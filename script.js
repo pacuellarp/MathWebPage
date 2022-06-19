@@ -2,12 +2,14 @@ var inputOne;
 var inputTwo;
 var inputThree;
 
-var a;
+let a;
 var b;
 var c;
 var h;
 
+
 function isos(){
+
 
     inputOne= document.getElementById("firstSide");
     inputTwo= document.getElementById("secondSide");
