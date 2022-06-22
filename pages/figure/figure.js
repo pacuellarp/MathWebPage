@@ -17,10 +17,10 @@ class Circle extends Figure{
         this.radio=radio;
     }
     calPerimeter(){
-        this.perimeter=2*Math.PI()*this.radio;
+        this.perimeter=2*Math.PI*this.radio;
     }
     calArea(){
-        this.area=Math.PI()*(this.radio**2);
+        this.area=Math.PI*(this.radio**2);
     }
 }
 
@@ -139,7 +139,7 @@ class Triangle extends BaseAndHeight{
         this.perimeter = this.sideOne+this.sideTwo+this.sideThree;
     }
     calHeight(){
-        if(this.height==0){
+        if(this.sideOne!=0 && this.sideTwo!=0 && this.sideThree!=0){
             if(this.sideOne==this.sideTwo && this.sideOne==this.sideThree){
                 this.height = Math.sqrt((this.sideOne**2)-((this.sideOne/2)**2));
             }else if(this.sideOne==this.sideThree && this.sideOne!=this.sideTwo){
@@ -161,7 +161,7 @@ class Triangle extends BaseAndHeight{
     calInternalAngles(){
         this.gamma = Math.asin(this.height/this.sideOne);
         this.alpha = Math.asin(this.height/this.sideThree);
-        this.beta = Math.PI()-this.alpha-this.gamma;
+        this.beta = Math.PI-this.alpha-this.gamma;
     }
     calTypeTriangle(){
         if(this.sideOne==this.sideTwo && this.sideOne==this.sideThree){
@@ -171,12 +171,12 @@ class Triangle extends BaseAndHeight{
         }else if((this.sideOne!=this.sideTwo && this.sideOne!=this.sideThree) && this.sideThree!=this.sideTwo){
             this.typeSideTriangle="Escaleno";
         }
-        if(this.alpha==Math.PI()/2 || this.beta==Math.PI()/2 || this.gamma==Math.PI()/2){
-            this.typeAngleTriangle = "rectángulo";
-        }else if(this.alpha<Math.PI()/2 && this.beta<Math.PI()/2 && this.gamma<Math.PI()/2){
-            this.typeAngleTriangle = "acutángulo";
-        }else if(this.alpha>Math.PI()/2 || this.beta>Math.PI()/2 || this.beta>Math.PI()/2){
-            this.typeAngleTriangle = "obtusángulo";
+        if(this.alpha==Math.PI/2 || this.beta==Math.PI/2 || this.gamma==Math.PI/2){
+            this.typeAngleTriangle = "Rectángulo";
+        }else if(this.alpha<Math.PI/2 && this.beta<Math.PI/2 && this.gamma<Math.PI/2){
+            this.typeAngleTriangle = "Acutángulo";
+        }else if(this.alpha>Math.PI/2 || this.beta>Math.PI/2 || this.beta>Math.PI/2){
+            this.typeAngleTriangle = "Obtusángulo";
         }
     }
 }
@@ -228,14 +228,24 @@ class Trapezium extends BaseAndHeight{
     }
 }
 
-function Verification(idIncomingData, mininumNullsAccepted){
+function MinimumIdAccepted(idArray,minimumIdAccepted){//Ingresan el array de id de cada figura y la cantidad de id níminos aceptados
+    return idArray.filter(
+        (id,index)=>{
+            if(index<minimumIdAccepted){
+                return id;//Retorna un array recortado, que sólo contiene los id mínimos
+            }
+        }
+    )
+}
+
+function Verification(idIncomingData, mininumNullsAccepted){//Recibe el array de id mínimos y el número mínimo de cajas vacías dentro de estos id mínimos
     let box;
     let boxValue;
     let nulls=0;
     for(var i=0;i<idIncomingData.length;i++){
         box = document.getElementById(idIncomingData[i]);//Revisa cada caja con el id indicado
-        if(a){//Espera que exista el valor
-            boxVale=a.value*1;
+        if(box){//Espera que exista el valor
+            boxValue=box.value*1;
         }
         if(boxValue==0){//Cuenta cuántas cajas vacías hay
             nulls++;
@@ -253,11 +263,58 @@ function Verification(idIncomingData, mininumNullsAccepted){
     }
 } 
 
+
+function OverwritingValues(idIncomingData,objectKeysInOrder,object){//Recibe el array de id mínimos, un array con los keys del objeto EN EL ORDEN QUE TIENE EL ARRAY DE ID, y el objeto de la figura
+    let box;
+    let boxValue=[];
+    let objectKeys = objectKeysInOrder.filter(
+        (key,index)=>{
+            if(index<idIncomingData.length){
+                return key;//Retorna un array recortado, que sólo contiene los keys relacionado a los id mínimos
+            }
+        }
+    )
+    for(var i=0;i<idIncomingData.length;i++){
+        box = document.getElementById(idIncomingData[i]);//Revisa cada caja con el id indicado
+        if(box){//Espera que exista el valor
+            boxValue.push(box.value*1);//Rellena el array con los valores ingresados en cada caja
+        }
+    }
+    for(var i=0;i<objectKeys.length;i++){
+                object[objectKeys[i]] = boxValue[i];//Sobreescribe cada propiedad del objeto según su key enlazado al id de las cajas en la página. SE ENLAZAN CON EL ORDEN ANTERIOMENTE MENCIONADO.
+    }
+}
+
+function ValuesToShow(idArray,objectKeysInOrder,object){
+    let box;
+    for(var i=0;i<idArray.length;i++){
+        box = document.getElementById(idArray[i]);//Revisa cada caja con el id indicado
+        if(box){//Espera que exista el valor
+            box.value = object[objectKeysInOrder[i]];
+        }
+    }
+}
+
+
 function CalTriangle(){
-    let verificationNumber=Verification(["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle"],1);
+    let objectKeysInOrder=["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"];
+    let idArray=["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"];
+    let minimumIdArray = MinimumIdAccepted(idArray,4);
+    let verificationNumber=Verification(minimumIdArray,1);
     if(verificationNumber==1){
-        console.log("Yes!");
+        let triangle = new Triangle();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,triangle);
+        triangle.calHeight();
+        triangle.calSide();
+        triangle.calInternalAngles();
+        triangle.calTypeTriangle();
+        triangle.calPerimeter();
+        triangle.calArea();
+        ValuesToShow(idArray,objectKeysInOrder,triangle);
+        console.log(triangle);
+        console.log(Object.values(triangle));
     }else{
         console.log("Oh no...");
     }
 }
+

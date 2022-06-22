@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">    
      <title>JS Práctica</title>
-     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="figure.css">
 </head>
 <body>
     <header>
@@ -15,7 +15,7 @@
     <main>
         <div>
             <figure>
-                <img src="src\figures\triangle.png" alt="Trángulo de base b y altura h" title="Trángulo de base b y altura h">
+                <img src="\src\figures\triangle.png" alt="Trángulo de base b y altura h" title="Trángulo de base b y altura h">
             </figure>
             <label for="firstSideTriangle">
                 <span>Lado a</span>
@@ -71,9 +71,15 @@
             </label>
             <br>
             <br>
-            <label for="typeTriangle">
+            <label for="typeSideTriangle">
                 <span>Tipo de triángulo: </span>
-                <input id="typeTriangle" type="number">
+                <input id="typeSideTriangle" type="text">
+            </label>
+            <br>
+            <br>
+            <label for="typeAngleTriangle">
+                <span>Tipo de triángulo: </span>
+                <input id="typeAngleTriangle" type="text">
             </label>
             <br>
             <br>
@@ -81,7 +87,7 @@
         </div>
         <div>
             <figure>
-                <img src="src\figures\circle.png" alt="Círculo de radio r">
+                <img src="\src\figures\circle.png" alt="Círculo de radio r">
             </figure>
             <label for="radioCircle">
                 <span>Radio</span>
@@ -105,6 +111,6 @@
         </div>
         
     </main>
-    <script src="./figure.js""></script>
+    <script src="figure.js""></script>
 </body>
 </html>
