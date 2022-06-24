@@ -263,7 +263,6 @@ function Verification(idIncomingData, mininumNullsAccepted){//Recibe el array de
     }
 } 
 
-
 function OverwritingValues(idIncomingData,objectKeysInOrder,object){//Recibe el array de id mínimos, un array con los keys del objeto EN EL ORDEN QUE TIENE EL ARRAY DE ID, y el objeto de la figura
     let box;
     let boxValue=[];
@@ -311,8 +310,33 @@ function CalTriangle(){
         triangle.calPerimeter();
         triangle.calArea();
         ValuesToShow(idArray,objectKeysInOrder,triangle);
-        console.log(triangle);
-        console.log(Object.values(triangle));
+        let canvasTriangle = document.getElementById("drawTriangle");
+        let draw = canvasTriangle.getContext("2d");
+        let b;
+        let m=triangle.sideOne*Math.cos(triangle.gamma);
+        let h;
+        if (triangle.base >= triangle.height){
+            b=250;
+            m=(m/triangle.base)*b;  
+            h=triangle.height*250/triangle.base;
+        }else{
+            h=0;
+            b=triangle.base*250/triangle.height;
+            m=(m/triangle.base)*b;  
+        }
+        draw.clearRect(0,0,250,250);
+        draw.beginPath();
+        draw.moveTo(0,250);
+        draw.lineTo(b,250);
+        draw.stroke();
+        draw.moveTo(b,250);
+        draw.lineTo(m,250-h);
+        draw.stroke();
+        draw.strokeStyle="blue";
+        draw.moveTo(m,250-h);
+        draw.lineTo(0,250);
+        draw.stroke();
+        draw.closePath();
     }else{
         console.log("Oh no...");
     }
