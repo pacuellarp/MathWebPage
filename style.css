@@ -2,25 +2,163 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
-html{
-    font-size: 91%;
-    font-family: Arial, sans-serif;
-}
+/* Header */
 
-body{
-    background-color: #D2CC1A;
-    background: repeating-linear-gradient(
-    -55deg,
-    #222,
-    #222 0px,
-    #D2CC1A 0.1em,
-    #D2CC1A 100px,
-    )
-}
-
-main{
+.header{
+    width: auto;
     display: flex;
-    justify-content: space-evenly;
+    position: sticky;
+    top:0;
+    padding-bottom: 5px;
+    justify-content: space-between;
+    background-color: #333333;
 }
+
+.headerHome, .headerNav{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2%;
+}
+
+.headerNavMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;
+    background:#333333;
+    margin:5px 12px;
+    
+}
+
+.headerNavMenu li a , .headerHome > a{
+    display:block;
+    padding:5px 11px;
+    color:#ffffff;
+    text-decoration:none;  
+}
+
+.headerNavMenu li a:hover , .headerHome > a:hover {
+    background-color: #07ABE3;
+}
+
+.active {
+    background-color: #0A07E3;
+}
+
+/* Footer */
+.footer{
+    display: flex;
+    width: auto;
+    height: 20vh;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0560B5;
+}
+
+.footerContact{
+    margin: 0 8%;
+}
+
+.footerContact h6{
+    margin-bottom: 15%;
+}
+
+.footerRRSS{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footerRRSSGH, .footerRRSSLI{
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.footerRRSSGH{
+    background-image: url('https://cdn-icons-png.flaticon.com/512/25/25231.png');
+    margin-right:2.5px;
+}
+
+.footerRRSSLI{
+    background-image: url('https://www.pngmart.com/files/21/Linkedin-In-Logo-PNG.png');
+    margin-left:2.5px;
+}
+
+.footerMessage{
+    margin: 0 8%;
+}
+
+.footerMessage p{
+    font-size: 0.6rem;
+}
+
+/* Main */
+
+/*mainContaniers*/
+
+.mainThreeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainOneContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-color: #4407D9;
+    border-style: double;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.mainOneContainer > h4, .mainOneContainer > figure, .mainOneContainer > p, .mainOneContainer > button {
+    margin:10px;
+}
+
+/*Button*/
+
+button{
+    
+}
+
+
+
+/*otherContents*/
+
+.planeGeometric{
+    background-image: url('https://cdn3.iconfinder.com/data/icons/geometric-shapes/68/shapes_triangle_circle_square_geometric_shapes_design_pattern-512.png');
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+h1{
+    text-align: center;
+    color: #0537CC;
+    margin: 20px;
+}
+
+h3{
+    text-align: center;
+    color: #0560B5;
+    margin: 20px;
+}
+
+
+
+
+
+
+@media only screen and (min-width: 768px){
+
+}
+

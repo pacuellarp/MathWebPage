@@ -17,10 +17,10 @@ class Circle extends Figure{
         this.radio=radio;
     }
     calPerimeter(){
-        this.perimeter=2*Math.PI*this.radio;
+        this.perimeter=Math.round(2*Math.PI*this.radio*1000)/1000;
     }
     calArea(){
-        this.area=Math.PI*(this.radio**2);
+        this.area=Math.round(Math.PI*(this.radio**2)*1000)/1000;
     }
 }
 
@@ -132,11 +132,11 @@ class Triangle extends BaseAndHeight{
         this.typeAngleTriangle=typeAngleTriangle;
     }
     calArea(){
-        this.base = this.sideTwo;
-        this.area = (this.base*this.height)/2;
+        this.base = Math.round(this.sideTwo*1000)/1000;
+        this.area = Math.round((this.base*this.height/2)*1000)/1000;
     }
     calPerimeter(){
-        this.perimeter = this.sideOne+this.sideTwo+this.sideThree;
+        this.perimeter = Math.round((this.sideOne+this.sideTwo+this.sideThree)*1000)/1000;
     }
     calHeight(){
         if(this.sideOne!=0 && this.sideTwo!=0 && this.sideThree!=0){
@@ -148,20 +148,24 @@ class Triangle extends BaseAndHeight{
                 this.height = (2/this.sideTwo)*Math.sqrt(((this.sideOne+this.sideTwo+this.sideThree)/2)*(((this.sideOne+this.sideTwo+this.sideThree)/2)-this.sideOne)*(((this.sideOne+this.sideTwo+this.sideThree)/2)-this.sideTwo)*(((this.sideOne+this.sideTwo+this.sideThree)/2)-this.sideThree));
             }
         }
+        this.height=Math.round(this.height*1000)/1000;
     }
     calSide(){
         if(this.sideOne==0){
             this.sideOne = Math.sqrt((this.height**2)+((this.sideTwo-(this.sideThree*Math.cos(Math.asin(this.height/this.sideThree))))**2));
+            this.sideOne=Math.round(this.sideOne*1000)/1000;
         }else if(this.sideTwo==0){
             this.sideTwo = (this.sideOne*Math.cos(Math.asin(this.height/this.sideOne)))+(this.sideThree*Math.cos(Math.asin(this.height/this.sideThree)));
+            this.sideTwo=Math.round(this.sideTwo*1000)/1000;
         }else if(this.sideThree==0){
             this.sideThree = Math.sqrt((this.height**2)+((this.sideTwo-(this.sideOne*Math.cos(Math.asin(this.height/this.sideOne))))**2));
+            this.sideThree=Math.round(this.sideThree*1000)/1000;
         }
     }
     calInternalAngles(){
-        this.gamma = Math.asin(this.height/this.sideOne);
-        this.alpha = Math.asin(this.height/this.sideThree);
-        this.beta = Math.PI-this.alpha-this.gamma;
+        this.gamma = Math.round(Math.asin(this.height/this.sideOne)*(180/Math.PI)*1000)/1000;
+        this.alpha = Math.round(Math.asin(this.height/this.sideThree)*(180/Math.PI)*1000)/1000;
+        this.beta = Math.round((180-this.alpha-this.gamma)*1000)/1000;
     }
     calTypeTriangle(){
         if(this.sideOne==this.sideTwo && this.sideOne==this.sideThree){
@@ -171,11 +175,11 @@ class Triangle extends BaseAndHeight{
         }else if((this.sideOne!=this.sideTwo && this.sideOne!=this.sideThree) && this.sideThree!=this.sideTwo){
             this.typeSideTriangle="Escaleno";
         }
-        if(this.alpha==Math.PI/2 || this.beta==Math.PI/2 || this.gamma==Math.PI/2){
+        if(this.alpha==90 || this.beta==90 || this.gamma==90){
             this.typeAngleTriangle = "Rectángulo";
-        }else if(this.alpha<Math.PI/2 && this.beta<Math.PI/2 && this.gamma<Math.PI/2){
+        }else if(this.alpha<90 && this.beta<90 && this.gamma<90){
             this.typeAngleTriangle = "Acutángulo";
-        }else if(this.alpha>Math.PI/2 || this.beta>Math.PI/2 || this.beta>Math.PI/2){
+        }else if(this.alpha>90 || this.beta>90 || this.gamma>90){
             this.typeAngleTriangle = "Obtusángulo";
         }
     }
@@ -303,6 +307,26 @@ function CalTriangle(){
     if(verificationNumber==1){
         let triangle = new Triangle();
         OverwritingValues(minimumIdArray,objectKeysInOrder,triangle);
+        let a=triangle.sideOne;
+        let b=triangle.sideTwo;
+        let c=triangle.sideThree;
+        if((triangle.sideOne!=0 && triangle.sideTwo!=0) && triangle.sideThree!=0){
+            if(triangle.sideTwo==triangle.sideThree && triangle.sideOne!=triangle.sideTwo){
+                triangle.sideTwo=a;
+                triangle.sideOne=b;
+            }else if(triangle.sideOne==triangle.sideTwo && triangle.sideOne!=triangle.sideThree){
+                triangle.sideTwo=c;
+                triangle.sideThree=b;
+            }else if((triangle.sideOne!=triangle.sideTwo && triangle.sideOne!=triangle.sideThree) && triangle.sideThree!=triangle.sideTwo){
+                if((a>b && b>c) || (a>c && c>b) ){
+                    triangle.sideTwo=a;
+                    triangle.sideOne=b;
+                }else if((c>a && a>b) || (c>b && b>a)){
+                    triangle.sideTwo=c;
+                    triangle.sideThree=b;
+                }
+            }
+        }
         triangle.calHeight();
         triangle.calSide();
         triangle.calInternalAngles();
@@ -312,17 +336,17 @@ function CalTriangle(){
         ValuesToShow(idArray,objectKeysInOrder,triangle);
         let canvasTriangle = document.getElementById("drawTriangle");
         let draw = canvasTriangle.getContext("2d");
-        let b;
-        let m=triangle.sideOne*Math.cos(triangle.gamma);
+        let m=triangle.sideOne*Math.cos(triangle.gamma*(Math.PI/180));
         let h;
         if (triangle.base >= triangle.height){
             b=250;
             m=(m/triangle.base)*b;  
             h=triangle.height*250/triangle.base;
         }else{
-            h=0;
+            h=250;
             b=triangle.base*250/triangle.height;
             m=(m/triangle.base)*b;  
+            console.log(h,b,m);
         }
         draw.clearRect(0,0,250,250);
         draw.beginPath();
@@ -342,3 +366,18 @@ function CalTriangle(){
     }
 }
 
+function calCircle(){
+    let objectKeysInOrder=["radio","area","perimeter"];
+    let idArray=["radioCircle","areaCircle","perimeterCircle"];
+    let minimumIdArray = MinimumIdAccepted(idArray,1);
+    let verificationNumber=Verification(minimumIdArray,0);
+    if(verificationNumber==1){
+        let circle = new Circle();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,circle);
+        circle.calArea();
+        circle.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,circle);
+    }else{
+        console.log("Oh no...");
+    }
+}

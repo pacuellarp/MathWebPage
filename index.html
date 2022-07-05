@@ -8,30 +8,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div>
-            <p>
-                Hola
-            </p>
+    <header class="header">
+        <div class="headerHome">
+            <a href="./index.html" class="active">Home</a>
         </div>
-    </header>
-    <main>
-        <nav>
-            <ul>
-                <li>Figure</li>
-                <li>Discount</li>
-            </ul>
-            <ul>
-                <li>Average</li>
-                <li>Wage</li>
+        <nav class="headerNav">
+            <ul class="headerNavMenu">
+                <li><a href="./pages/figure/figure.html" >Figure</a></li>
+                <li><a href="./pages/average/average.html">Average</a></li>
+                <li><a href="./pages/wage/wage.html">Wage</a></li>
             </ul>
         </nav>
+    </header>
+    <main >
+        <h1>Welcome to MathWebPage!</h1>
+        <h3>Here, you'll find mathematical tools about</h3>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Plane geometric figures calculator</h4>
+                <figure class="planeGeometric"></figure>
+                <p>You'll be able to resolve</p>
+                <p>the most common plane shapes </p>
+                <button type="button"><a href="./pages/figure/figure.html">Let's go!</a></button>
+            </div>
+        </div>
     </main>
-    <footer>
-        <div>
-            <p>
-                Adiós
-            </p>
+    <footer class="footer">
+        <div class="footerContact">
+            <h6>Contact:</h6>
+            <div class="footerRRSS">
+            <a href="https://cdn-icons-png.flaticon.com/512/25/25231.png"><figure class="footerRRSSGH"></figure></a>
+            <a href="https://iconape.com/wp-content/files/yd/367773/png/367773.png"><figure class="footerRRSSLI"></figure></a>
+            </div>
+        </div>
+        <div class="footerMessage">
+            <p>Its total or partial reproduction is prohibited,</p>
+            <p>without the express authorization of its owner.</p>
+            <p>All rights reserved.</p>
         </div>
     </footer>
 </body>
