@@ -4,90 +4,122 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">    
-     <title>JS Práctica</title>
-     <link rel="stylesheet" href="figure.css">
+     <title>MathWebPage - Figures</title>
+     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <header class="header">
+        <div class="headerHome">
+            <a href="/index.html" class="active">Home</a>
+        </div>
+        <nav class="headerNav">
+            <label for="activateMenu">    
+                Menu
+            </label> 
+            <input type="checkbox" id="activateMenu">    
+            <ul class="headerNavMenu">     
+                <li><a href="/pages/figure/figure.html" >Figures</a></li>
+                <li><a href="/pages/average/average.html">Averages</a></li>
+                <li><a href="/pages/wage/wage.html">Interests</a></li>   
+            </ul>
+        </nav>
+    </header>
+    <main >
+        <h1>Plane Geometric Figures Calculator</h1>
+        <h3>In each figure, there is a minimum number of data that you must enter. <br> We'll clear it up for you in every case.</h3>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Triangle</h4>
+                <figure class="triangle" alt="Triangle with base b and height h" title="Triangle with base b and height h"></figure>
+                <p>You can enter the sides in the order you prefer. <br>  We reorder them and set <span style="color:rgba(219, 8, 8, 0.945)">side b</span> as the base. </p>
+                <p>You must enter at least 3 of the 4 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <p> If you enter the height, we assume <span style="color:rgba(219, 8, 8, 0.945)">side b</span> as its base:</p>
+                
+                <label for="firstSideTriangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side a</span>
+                    <input id="firstSideTriangle" type="number">
+                </label>
+                <label for="secondSideTriangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side b</span>
+                    <input id="secondSideTriangle" type="number">
+                </label>
+                <label for="thirdSideTriangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side c</span>
+                    <input id="thirdSideTriangle" type="number">
+                </label>
+                <label for="heightTriangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Height</span>
+                    <input id="heightTriangle" type="number">
+                </label>
+                <label for="areaTriangle">
+                    <span>Area</span>
+                    <input id="areaTriangle" type="number">
+                </label>
+                <label for="perimeterTriangle">
+                    <span>Perimeter</span>
+                    <input id="perimeterTriangle" type="number">
+                </label>
+                <label for="firstAngle">
+                    <span>Angle A [°]</span>
+                    <input id="firstAngle" type="number">
+                </label>
+                <label for="secondAngle">
+                    <span>Angle B [°]</span>
+                    <input id="secondAngle" type="number">
+                </label>
+                <label for="thirdAngle">
+                    <span>Angle C [°]</span>
+                    <input id="thirdAngle" type="number">
+                </label>
+                <label for="typeSideTriangle">
+                    <span>Type de triangle (by sides): </span>
+                    <input id="typeSideTriangle" type="text">
+                </label>
+                <label for="typeAngleTriangle">
+                    <span>Type de triangle (by angles): </span>
+                    <input id="typeAngleTriangle" type="text">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="CalTriangle()">Calculate</button>
+                    <button id="clear0" type="button">Clear</button>
+                </div>
+                <canvas id="drawTriangle" width="250" height="250"></canvas>
+
+            </div>
+            <div class="mainOneContainer">
+                <h4>Statistical Location Calculator <br> and Mean Types</h4>
+                <figure class="locationMean"></figure>
+                <p>You'll order and calculate <br> different estimates of <br> central tendency</p>
+                <button type="button"><a href="/pages/average/average.html">Got it!</a></button>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Interest Rates Calculator</h4>
+                <figure class="interestRates"></figure>
+                <p>You'll compute the value of money <br> over time at different    <br>  interest rates</p>
+                <button type="button"><a href="/pages/wage/wage.html">Awesome!</a></button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footerContact">
+            <h6>Contact:</h6>
+            <div class="footerRRSS">
+            <a href="https://github.com/pacuellarp/"><figure class="footerRRSSGH"></figure></a>
+            <a href="https://www.linkedin.com/in/paul-alfonso-cu%C3%A9llar-prieto-1536b1197/"><figure class="footerRRSSLI"></figure></a>
+            </div>
+        </div>
+        <div class="footerMessage">
+            <p>Its total or partial reproduction is prohibited,</p>
+            <p>without the express authorization of its owner.</p>
+            <p>All rights reserved.</p>
+        </div>
+    </footer>
     <header>
         <h1>Calculadora de altura de triángulos</h1>
         <p>Por ahora, sólo se aceptan triángulos isósceles, disculpe las molestias. Ingresa tus datos en el orden que desees.</p>
     </header>
     <main>
-        <div>
-            <figure>
-                <img src="\src\figures\triangle.png" alt="Trángulo de base b y altura h" title="Trángulo de base b y altura h">
-            </figure>
-            <label for="firstSideTriangle">
-                <span>Lado a</span>
-                <input id="firstSideTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="secondSideTriangle">
-                <span>Lado b</span>
-                <input id="secondSideTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="thirdSideTriangle">
-                <span>Lado c</span>
-                <input id="thirdSideTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="heightTriangle">
-                <span>Altura</span>
-                <input id="heightTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="areaTriangle">
-                <span>Área</span>
-                <input id="areaTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="perimeterTriangle">
-                <span>Perímetro</span>
-                <input id="perimeterTriangle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="firstAngle">
-                <span>Ángulo A [°]</span>
-                <input id="firstAngle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="secondAngle">
-                <span>Ángulo B [°]</span>
-                <input id="secondAngle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="thirdAngle">
-                <span>Ángulo C [°]</span>
-                <input id="thirdAngle" type="number">
-            </label>
-            <br>
-            <br>
-            <label for="typeSideTriangle">
-                <span>Tipo de triángulo (lados): </span>
-                <input id="typeSideTriangle" type="text">
-            </label>
-            <br>
-            <br>
-            <label for="typeAngleTriangle">
-                <span>Tipo de triángulo (ángulos): </span>
-                <input id="typeAngleTriangle" type="text">
-            </label>
-            <br>
-            <br>
-            <button type="button" onclick="CalTriangle()">CALCULAR</button>
-            <br>
-            <br>
-            <canvas id="drawTriangle" width="250" height="250"></canvas>
-        </div>
+        
         <div>
             <figure>
                 <img src="\src\figures\circle.png" alt="Círculo de radio r">
@@ -96,21 +128,19 @@
                 <span>Radio</span>
                 <input id="radioCircle" type="number">
             </label>
-            <br>
-            <br>
             <label for="areaCircle">
                 <span>Área</span>
                 <input id="areaCircle" type="number">
             </label>
             <br>
-            <br>
             <label for="perimeterCircle">
                 <span>Perímetro</span>
                 <input id="perimeterCircle" type="number">
             </label>
-            <br>
-            <br>
-            <button type="button" onclick="calCircle()">CALCULAR</button>
+            <div class="buttonContainer">
+                <button type="button" onclick="calCircle()">Calculate</button>
+                <button id="clear1" type="button"">Clear</button>
+            </div>
         </div>
         
     </main>

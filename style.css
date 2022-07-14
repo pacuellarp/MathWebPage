@@ -24,16 +24,6 @@
     margin: 0 2%;
 }
 
-.headerNavMenu{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    list-style: none;
-    background:#333333;
-    margin:5px 12px;
-    
-}
-
 .headerNavMenu li a , .headerHome > a{
     display:block;
     padding:5px 11px;
@@ -45,6 +35,78 @@
     background-color: #07ABE3;
 }
 
+
+
+.headerNav ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.headerNavMenu a {
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  font-weight:400;
+  font-size:15px;
+  padding:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.headerNav{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: right;
+}
+
+.headerNav > label{
+    color:#ffffff;
+    background-color: #0560B5;
+    padding:5px 11px;
+    border-radius: 5%;
+}
+
+.headerNav  :hover {
+    background-color:#07ABE3;
+}
+
+
+.headerNavMenu li {
+    position:relative;
+    float:left;
+  }
+  
+.headerNavMenu li:hover {
+    background:#5b78a7;
+}
+
+#activateMenu{
+    display:none
+}  
+
+#activateMenu:checked +  .headerNavMenu{
+    display: block;
+    background-color:#333333;
+} 
+
+.headerNavMenu{
+    display:none;
+    position:absolute;
+    top:100%;
+}
+
+.headerNavMenu li {
+    list-style: none;
+    float:none;
+    width:150px;
+}
+  
+.headerNav:checked .headerNavMenu,  .headerNavMenu li:hover{
+    display:block;
+}
+
 .active {
     background-color: #0A07E3;
 }
@@ -53,10 +115,11 @@
 .footer{
     display: flex;
     width: auto;
-    height: 20vh;
+    height: 19vh;
     justify-content: space-between;
     align-items: center;
     background-color: #0560B5;
+    box-shadow: 0 50vh 0 50vh #0560B5;
 }
 
 .footerContact{
@@ -116,24 +179,82 @@
     border-style: double;
     border-radius: 10%;
     text-align: center;
+    margin: 2.5%;
 }
 
 .mainOneContainer > h4, .mainOneContainer > figure, .mainOneContainer > p, .mainOneContainer > button {
     margin:10px;
 }
 
+.mainOneContainer > p{
+    color:#333333;
+}
+
 /*Button*/
 
 button{
-    
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  vertical-align: middle;
+  margin: 5px;
 }
 
+button:hover,
+button:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
 
+button:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+button:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+
+button > a {
+    text-decoration:none; 
+    color: #ffffff; 
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
 
 /*otherContents*/
 
+/*Home*/
+
 .planeGeometric{
-    background-image: url('https://cdn3.iconfinder.com/data/icons/geometric-shapes/68/shapes_triangle_circle_square_geometric_shapes_design_pattern-512.png');
+    background-image: url('./src/main/1.png');
     width: 35px;
     height: 35px;
     background-size: cover;
@@ -153,12 +274,48 @@ h3{
     margin: 20px;
 }
 
+.locationMean{
+    background-image: url('./src/main/2.png');
+    width: 65px;
+    height: 35px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
 
+.interestRates{
+    background-image: url('./src/main/3.png');
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+/*PlaneGeometric*/
+
+.triangle{
+    background-image: url('/src/figures/triangle.png');
+    width: 250px;
+    height: 15vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
 
 
 
 
 @media only screen and (min-width: 768px){
 
+    .mainThreeContainer{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 2vh 0;
+    }
+
 }
+
 

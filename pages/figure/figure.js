@@ -254,13 +254,13 @@ function Verification(idIncomingData, mininumNullsAccepted){//Recibe el array de
         if(boxValue==0){//Cuenta cuántas cajas vacías hay
             nulls++;
         }else if(boxValue<0){
-            alert("Ingresa datos válidos para el cálculo.");//Evalúa si hay un número negativo para abortar todo
+            alert("Enter valid data for the calculation.");//Evalúa si hay un número negativo para abortar todo
             i=idIncomingData.length;
             return 0;
         }
     }
     if(nulls>mininumNullsAccepted){//Compara si sobrepasa o no el número de datos vacíos admitidos
-        alert("Ingresa el mínimo de datos requerido para el cálculo.");
+        alert("Enter the minimum data required for the calculation.");
         return 0;
     }else{
     return 1//Este valor es el que se usará para arrancar o no el cálculo de cada figura, con 0 no inicia, con 1 sí inicia
@@ -298,10 +298,41 @@ function ValuesToShow(idArray,objectKeysInOrder,object){
     }
 }
 
+//Lista de listas de id por figura
+let idArrays = [["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"],["radioCircle","areaCircle","perimeterCircle"]]
+//Lista de listas de object keys de cada objeto por figura
+let AllObjectKeysInOrder=[["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"],["radio","area","perimeter"]];
+
+//Array para almacenar los id de los botones de Clear
+const idClear=[];
+//Array para almacenar el espacio de cada botón de Clear
+const clear=[];
+
+//Se almacenan los id y los espacios de los botones de Clear
+for(i=0;i<9;i++){ 
+    idClear.push("clear"+i);
+    clear.push(document.getElementById(idClear[i]));
+}
+
+function Clear(evt){//El parámetro será los id de los datos de la figura, los cuales (datos) serán borrados
+    let box;
+    for(var i=0;i<evt.currentTarget.myParam.length;i++){//Ese evt.currentTarget.myParam servirá para obtener el parámetro desde target attribute del evento (https://stackoverflow.com/questions/256754/how-to-pass-arguments-to-addeventlistener-listener-function)
+        box = document.getElementById(evt.currentTarget.myParam[i]);//Revisa cada caja con el id indicado
+        if(box){//Espera que exista el valor
+            box.value = "";//Lo borra
+        }
+    }
+}
+
+//Se crean los addEventListener de cada botón que llamará la función para borrar
+for(i=0;i<9;i++){
+    clear[i].addEventListener("click",Clear,false);
+    clear[i].myParam = idArrays[i];//Aquí, se alamcena en el párametro en el target attribute del evento, pues el addEventListener no permite una función con parámetro
+}
 
 function CalTriangle(){
-    let objectKeysInOrder=["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"];
-    let idArray=["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"];
+    let objectKeysInOrder=AllObjectKeysInOrder[0];
+    let idArray=idArrays[0];
     let minimumIdArray = MinimumIdAccepted(idArray,4);
     let verificationNumber=Verification(minimumIdArray,1);
     if(verificationNumber==1){
@@ -367,8 +398,8 @@ function CalTriangle(){
 }
 
 function calCircle(){
-    let objectKeysInOrder=["radio","area","perimeter"];
-    let idArray=["radioCircle","areaCircle","perimeterCircle"];
+    let objectKeysInOrder=AllObjectKeysInOrder[1];
+    let idArray=idArrays[1];
     let minimumIdArray = MinimumIdAccepted(idArray,1);
     let verificationNumber=Verification(minimumIdArray,0);
     if(verificationNumber==1){
