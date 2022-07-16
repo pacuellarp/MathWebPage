@@ -84,19 +84,268 @@
                     <button id="clear0" type="button">Clear</button>
                 </div>
                 <canvas id="drawTriangle" width="250" height="250"></canvas>
-
+                <p>This is what your triangle looks like!</p>
+            </div>
+        </div>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Circle</h4>
+                <figure class="circle" alt="Circle of radius r" title="Circle of radius r"></figure>
+                <p>You must enter the data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="radioCircle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Radius</span>
+                    <input id="radioCircle" type="number">
+                </label>
+                <label for="areaCircle">
+                    <span>Area</span>
+                    <input id="areaCircle" type="number">
+                </label>
+                <label for="perimeterCircle">
+                    <span>Perimeter</span>
+                    <input id="perimeterCircle" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calCircle()">Calculate</button>
+                    <button id="clear1" type="button"">Clear</button>
+                </div>
             </div>
             <div class="mainOneContainer">
-                <h4>Statistical Location Calculator <br> and Mean Types</h4>
-                <figure class="locationMean"></figure>
-                <p>You'll order and calculate <br> different estimates of <br> central tendency</p>
-                <button type="button"><a href="/pages/average/average.html">Got it!</a></button>
+                <h4>Square</h4>
+                <figure class="square" alt="Square of side l" title="Square of side l"></figure>
+                <p>You must enter the data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="sideSquare">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side</span>
+                    <input id="sideSquare" type="number">
+                </label>
+                <label for="areaSquare">
+                    <span>Area</span>
+                    <input id="areaSquare" type="number">
+                </label>
+                <label for="perimeterSquare">
+                    <span>Perimeter</span>
+                    <input id="perimeterSquare" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calSquare()">Calculate</button>
+                    <button id="clear2" type="button"">Clear</button>
+                </div>
             </div>
             <div class="mainOneContainer">
-                <h4>Interest Rates Calculator</h4>
-                <figure class="interestRates"></figure>
-                <p>You'll compute the value of money <br> over time at different    <br>  interest rates</p>
-                <button type="button"><a href="/pages/wage/wage.html">Awesome!</a></button>
+                <h4>Rectangle</h4>
+                <figure class="rectangle" alt="Rectangle of base b and height h" title="Rectangle of base b and height h"></figure>
+                <p>You must enter the data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="baseRectangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Base</span>
+                    <input id="baseRectangle" type="number">
+                </label>
+                <label for="heightRectangle">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Height</span>
+                    <input id="heightRectangle" type="number">
+                </label>
+                <label for="areaRectangle">
+                    <span>Area</span>
+                    <input id="areaRectangle" type="number">
+                </label>
+                <label for="perimeterRectangle">
+                    <span>Perimeter</span>
+                    <input id="perimeterRectangle" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calRectangle()">Calculate</button>
+                    <button id="clear3" type="button"">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Circular sector</h4>
+                <figure class="circularSector" alt="Circular sector of radius r, central angle A and arc lenght l" title="Circular sector of radius r, central angle A and arc lenght l"></figure>
+                <p>You must enter at least 2 of the 3 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="radioCircularSector">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Radius</span>
+                    <input id="radioCircularSector" type="number">
+                </label>
+                <label for="centralAngleCircularSector">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Central angle [°]</span>
+                    <input id="centralAngleCircularSector" type="number">
+                </label>
+                <label for="arcLenghtCircularSector">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Arc lenght</span>
+                    <input id="arcLenghtCircularSector" type="number">
+                </label>
+                <label for="areaCircularSector">
+                    <span>Area</span>
+                    <input id="areaCircularSector" type="number">
+                </label>
+                <label for="perimeterCircularSector">
+                    <span>Perimeter</span>
+                    <input id="perimeterCircularSector" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calCircularSector()">Calculate</button>
+                    <button id="clear4" type="button"">Clear</button>
+                </div>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Rhombus</h4>
+                <figure class="rhombus" alt="Rhombus of side l and diagonals p and q" title="Rhombus of side l and diagonals p and q"></figure>
+                <p>You must enter at least 2 of the 3 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="sideRhombus">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side</span>
+                    <input id="sideRhombus" type="number">
+                </label>
+                <label for="diagonalOneRhombus">
+                    <span style="color:rgba(219, 8, 8, 0.945)">First diagonal</span>
+                    <input id="diagonalOneRhombus" type="number">
+                </label>
+                <label for="diagonalTwoRhombus">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Second diagonal</span>
+                    <input id="diagonalTwoRhombus" type="number">
+                </label>
+                <label for="areaRhombus">
+                    <span>Area</span>
+                    <input id="areaRhombus" type="number">
+                </label>
+                <label for="perimeterRhombus">
+                    <span>Perimeter</span>
+                    <input id="perimeterRhombus" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calRhombus()">Calculate</button>
+                    <button id="clear5" type="button"">Clear</button>
+                </div>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Regular polygon</h4>
+                <figure class="polygon" alt="Regular polygon of side l, apothem a and n sides" title="Regular polygon of side l, apothem a and n sides"></figure>
+                <p>You must enter at least 2 of the 3 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="sidePolygon">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side</span>
+                    <input id="sidePolygon" type="number">
+                </label>
+                <label for="nSides">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Number of sides</span>
+                    <input id="nSides" type="number">
+                </label>
+                <label for="apothem">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Apothem</span>
+                    <input id="apothem" type="number">
+                </label>
+                <label for="areaPolygon">
+                    <span>Area</span>
+                    <input id="areaPolygon" type="number">
+                </label>
+                <label for="perimeterPolygon">
+                    <span>Perimeter</span>
+                    <input id="perimeterPolygon" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calPolygon()">Calculate</button>
+                    <button id="clear6" type="button"">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Rhomboid</h4>
+                <figure class="rhomboid alt="Rhomboid of sides a and b, and height h" title="Rhomboid of sides a and b, and height h"></figure>
+                <p>You must enter at least 3 of the 4 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <p>We assume <span style="color:rgba(219, 8, 8, 0.945)">side b</span> as its base:</p>
+                <label for="sideOneRhomboid">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side a</span>
+                    <input id="sideOneRhomboid" type="number">
+                </label>
+                <label for="sideTwoRhomboid">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side b</span>
+                    <input id="sideTwoRhomboid" type="number">
+                </label>
+                <label for="heightRhomboid">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Height</span>
+                    <input id="heightRhomboid" type="number">
+                </label>
+                <label for="littleNRhomboid">
+                    <span style="color:rgba(219, 8, 8, 0.945)">n</span>
+                    <input id="littleNRhomboid" type="number">
+                </label>
+                <label for="areaRhomboid">
+                    <span>Area</span>
+                    <input id="areaRhomboid" type="number">
+                </label>
+                <label for="perimeterRhomboid">
+                    <span>Perimeter</span>
+                    <input id="perimeterRhomboid" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calRhomboid()">Calculate</button>
+                    <button id="clear7" type="button"">Clear</button>
+                </div>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Trapezium</h4>
+                <figure class="trapezium" alt="Trapezium of parallel sides a and b, and perpendicular sides c and d" title="Trapezium of parallel sides a and b, and perpendicular sides c and d"></figure>
+                <p>You must enter the data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <p>Remember, sides a and b must be parallel.</p>
+                <label for="sideOneTrapezium">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side a</span>
+                    <input id="sideOneTrapezium" type="number">
+                </label>
+                <label for="sideTwoTrapezium">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side b</span>
+                    <input id="sideTwoTrapezium" type="number">
+                </label>
+                <label for="sideThreeTrapezium">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side c</span>
+                    <input id="sideThreeTrapezium" type="number">
+                </label>
+                <label for="sideFourTrapezium">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side d</span>
+                    <input id="sideFourTrapezium" type="number">
+                </label>
+                <label for="heightTrapezium">
+                    <span>Height</span>
+                    <input id="heightTrapezium" type="number">
+                </label>
+                <label for="areaTrapezium">
+                    <span>Area</span>
+                    <input id="areaTrapezium" type="number">
+                </label>
+                <label for="perimeterTrapezium">
+                    <span>Perimeter</span>
+                    <input id="perimeterTrapezium" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calTrapezium()">Calculate</button>
+                    <button id="clear8" type="button"">Clear</button>
+                </div>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Regular polygon</h4>
+                <figure class="polygon" alt="Regular polygon of side l, apothem a and n sides" title="Regular polygon of side l, apothem a and n sides"></figure>
+                <p>You must enter at least 2 of the 3 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
+                <label for="sidePolygon">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Side</span>
+                    <input id="sidePolygon" type="number">
+                </label>
+                <label for="nSides">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Number of sides</span>
+                    <input id="nSides" type="number">
+                </label>
+                <label for="apothem">
+                    <span style="color:rgba(219, 8, 8, 0.945)">Apothem</span>
+                    <input id="apothem" type="number">
+                </label>
+                <label for="areaPolygon">
+                    <span>Area</span>
+                    <input id="areaPolygon" type="number">
+                </label>
+                <label for="perimeterPolygon">
+                    <span>Perimeter</span>
+                    <input id="perimeterPolygon" type="number">
+                </label>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calPolygon()">Calculate</button>
+                    <button id="clear6" type="button"">Clear</button>
+                </div>
             </div>
         </div>
     </main>
@@ -114,36 +363,7 @@
             <p>All rights reserved.</p>
         </div>
     </footer>
-    <header>
-        <h1>Calculadora de altura de triángulos</h1>
-        <p>Por ahora, sólo se aceptan triángulos isósceles, disculpe las molestias. Ingresa tus datos en el orden que desees.</p>
-    </header>
-    <main>
-        
-        <div>
-            <figure>
-                <img src="\src\figures\circle.png" alt="Círculo de radio r">
-            </figure>
-            <label for="radioCircle">
-                <span>Radio</span>
-                <input id="radioCircle" type="number">
-            </label>
-            <label for="areaCircle">
-                <span>Área</span>
-                <input id="areaCircle" type="number">
-            </label>
-            <br>
-            <label for="perimeterCircle">
-                <span>Perímetro</span>
-                <input id="perimeterCircle" type="number">
-            </label>
-            <div class="buttonContainer">
-                <button type="button" onclick="calCircle()">Calculate</button>
-                <button id="clear1" type="button"">Clear</button>
-            </div>
-        </div>
-        
-    </main>
     <script src="figure.js""></script>
 </body>
 </html>
+

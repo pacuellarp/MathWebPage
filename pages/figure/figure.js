@@ -31,18 +31,18 @@ class CircularSector extends Circle{
         this.arcLenght=arcLenght;
     }
     calPerimeter(){
-        this.perimeter=(this.radio*2)+this.arcLenght;
+        this.perimeter=Math.round(((this.radio*2)+this.arcLenght)*1000)/1000;
     }
     calArea(){
-        this.area=(this.radio**2)*this.centralAngle/2;
+        this.area=Math.round((this.radio**2)*1000*(this.centralAngle*Math.PI/180)/2)/1000;
     }
     calParameter(){
         if(this.radio==0){
-            this.radio=this.arcLenght/this.centralAngle;
+            this.radio=Round(this.arcLenght/(this.centralAngle*Math.PI/180));
         }else if(this.centralAngle==0){
-            this.centralAngle=this.arcLenght/this.radio;
+            this.centralAngle=Round((this.arcLenght/this.radio)*(180/Math.PI));
         }else if(this.arcLenght==0){
-            this.arcLenght=this.radio*this.centralAngle;
+            this.arcLenght=Round(this.radio*(this.centralAngle*Math.PI/180));
         }
     }
 }
@@ -60,10 +60,10 @@ class Square extends Sides{
         super(perimeter, area, sideOne);
     }
     calArea(){
-        this.area = this.sideOne*this.sideOne;
+        this.area = Round(this.sideOne*this.sideOne);
     }
     calPerimeter(){
-        this.perimeter = this.sideOne*4;
+        this.perimeter = Round(this.sideOne*4);
     }
 }
 
@@ -74,18 +74,18 @@ class Rhombus extends Sides{
         this.diagonalTwo=diagonalTwo;
     }
     calArea(){
-        this.area = this.sideOne*this.sideOne;
+        this.area = Round(this.diagonalOne*this.diagonalTwo/2);
     }
     calPerimeter(){
-        this.perimeter = this.sideOne*4;
+        this.perimeter = Round(this.sideOne*4);
     }
     calDiagonal(){
         if(this.diagonalOne == 0){
-            this.diagonalOne = (this.area*2)/this.diagonalTwo;
+            this.diagonalOne = Round(Math.sqrt(((this.sideOne)**2)-((this.diagonalTwo/2)**2))*2);
         }else if(this.diagonalTwo == 0){
-            this.diagonalTwo = (this.area*2)/this.diagonalOne;
+            this.diagonalTwo = Round(Math.sqrt(((this.sideOne)**2)-((this.diagonalOne/2)**2))*2);
         }else if(this.sideOne == 0){
-            this.sideOne = (this.diagonalOne*this.diagonalTwo)/2;
+            this.sideOne = Round(Math.sqrt(((this.diagonalOne/2)**2)+((this.diagonalTwo/2)**2)));
         }
     }
 }
@@ -97,18 +97,18 @@ class Polygon extends Sides{
         this.apothem=apothem;
     }
     calArea(){
-        this.area = (this.perimeter*this.apothem)/2;
+        this.area = Round((this.perimeter*this.apothem)/2);
     }
     calPerimeter(){
-        this.perimeter = this.nSides*this.sideOne;
+        this.perimeter = Round(this.nSides*this.sideOne);
     }
     calApothem(){
         if(this.apothem == 0){
-            this.apothem = this.sideOne/(2*Math.tan(Math.PI/this.nSides));
+            this.apothem = Round(this.sideOne/(2*Math.tan(Math.PI/this.nSides)));
         }else if (this.sideOne == 0){
-            this.sideOne = (2*Math.tan(Math.PI/this.nSides))*this.apothem;
+            this.sideOne = Round((2*Math.tan(Math.PI/this.nSides))*this.apothem);
         }else if(this.nSides == 0){
-            this.nSides = Math.PI/(Math.atan(this.sideOne/(2*this.apothem)));
+            this.nSides = Round(Math.PI/(Math.atan(this.sideOne/(2*this.apothem))));
         }
     }
 }
@@ -169,50 +169,50 @@ class Triangle extends BaseAndHeight{
     }
     calTypeTriangle(){
         if(this.sideOne==this.sideTwo && this.sideOne==this.sideThree){
-            this.typeSideTriangle="Equilátero";
+            this.typeSideTriangle="Equilateral";
         }else if((this.sideOne==this.sideThree && this.sideOne!=this.sideTwo) || (this.sideOne==this.sideTwo && this.sideOne!=this.sideThree) || (this.sideTwo==this.sideThree && this.sideOne!=this.sideTwo)){
-            this.typeSideTriangle="Isósceles";
+            this.typeSideTriangle="Isosceles";
         }else if((this.sideOne!=this.sideTwo && this.sideOne!=this.sideThree) && this.sideThree!=this.sideTwo){
-            this.typeSideTriangle="Escaleno";
+            this.typeSideTriangle="Scalene";
         }
         if(this.alpha==90 || this.beta==90 || this.gamma==90){
-            this.typeAngleTriangle = "Rectángulo";
+            this.typeAngleTriangle = "Right";
         }else if(this.alpha<90 && this.beta<90 && this.gamma<90){
-            this.typeAngleTriangle = "Acutángulo";
+            this.typeAngleTriangle = "Acute";
         }else if(this.alpha>90 || this.beta>90 || this.gamma>90){
-            this.typeAngleTriangle = "Obtusángulo";
+            this.typeAngleTriangle = "Obtuse";
         }
     }
 }
 
-class Rectangule extends BaseAndHeight{
+class Rectangle extends BaseAndHeight{
     constructor(perimeter, area, base, height){
         super(perimeter, area, base, height);
     }
     calArea(){
-        this.area = this.base*this.height;
+        this.area = Round(this.base*this.height);
     }
     calPerimeter(){
-        this.perimeter = (this.base+this.height)*2;
+        this.perimeter = Round((this.base+this.height)*2);
     }
 }
 
 class Rhomboid extends BaseAndHeight{
-    constructor(perimeter, area, sideOne, sideTwo, base, height, littleN){
-        super(perimeter, area, sideOne, sideTwo, base, height);
+    constructor(perimeter, area, sideOne, sideTwo, height, littleN, base){
+        super(perimeter, area, sideOne, sideTwo, height, base);
         this.littleN=littleN;
     }
     calArea(){
         this.base=this.sideTwo;
         if(this.littleN==0){
-            this.littleN=Math.sqrt(this.sideOne**2-this.height*2);
+            this.littleN=Round(Math.sqrt(this.sideOne**2-this.height**2));
         }else{
-            this.height = Math.sqrt(this.sideOne**2-this.littleN**2);
+            this.height = Round(Math.sqrt(this.sideOne**2-this.littleN**2));
         }
-        this.area=this.base*this.height;
+        this.area=Round(this.base*this.height);
     }
     calPerimeter(){
-        this.perimeter = (this.base+this.height)*2;
+        this.perimeter = Round((this.base+this.height)*2);
     }
 }
 
@@ -222,14 +222,18 @@ class Trapezium extends BaseAndHeight{
         this.sideFour=sideFour;
     }
     calArea(){
-        this.area = (this.sideOne+this.sideTwo)*this.height/2;
+        this.area = Round((this.sideOne+this.sideTwo)*this.height/2);
     }
     calPerimeter(){
-        this.perimeter = this.sideOne+this.sideTwo+this.sideThree+this.sideFour;
+        this.perimeter = Round(this.sideOne+this.sideTwo+this.sideThree+this.sideFour);
     }
     calHeight(){
-        this.height = Math.sqrt((-this.sideOne+this.sideTwo+this.sideThree+this.sideFour)*(this.sideOne-this.sideTwo+this.sideThree+this.sideFour)*(this.sideOne-this.sideTwo+this.sideThree-this.sideFour)*(this.sideOne-this.sideTwo-this.sideThree+this.sideFour))/(2*Math.abs(this.sideTwo-this.sideOne));
+        this.height = Round(Math.sqrt((-this.sideOne+this.sideTwo+this.sideThree+this.sideFour)*(this.sideOne-this.sideTwo+this.sideThree+this.sideFour)*(this.sideOne-this.sideTwo+this.sideThree-this.sideFour)*(this.sideOne-this.sideTwo-this.sideThree+this.sideFour))/(2*Math.abs(this.sideTwo-this.sideOne)));
     }
+}
+
+function Round(num){
+    return Math.round((num)*1000)/1000;
 }
 
 function MinimumIdAccepted(idArray,minimumIdAccepted){//Ingresan el array de id de cada figura y la cantidad de id níminos aceptados
@@ -299,9 +303,9 @@ function ValuesToShow(idArray,objectKeysInOrder,object){
 }
 
 //Lista de listas de id por figura
-let idArrays = [["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"],["radioCircle","areaCircle","perimeterCircle"]]
+let idArrays = [["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"],["radioCircle","areaCircle","perimeterCircle"],["sideSquare","areaSquare","perimeterSquare"], ["baseRectangle","heightRectangle","areaRectangle","perimeterRectangle"],["radioCircularSector", "centralAngleCircularSector", "arcLenghtCircularSector", "areaCircularSector", "perimeterCircularSector"],["sideRhombus","diagonalOneRhombus","diagonalTwoRhombus","areaRhombus","perimeterRhombus"],[ "sidePolygon","nSides","apothem","areaPolygon","perimeterPolygon"],["sideOneRhomboid", "sideTwoRhomboid", "heightRhomboid","littleNRhomboid", "baseRhomboid", "areaRhomboid", "perimeterRhomboid"],["sideOneTrapezium", "sideTwoTrapezium", "sideThreeTrapezium", "sideFourTrapezium", "heightTrapezium", "areaTrapezium", "perimeterTrapezium"]]
 //Lista de listas de object keys de cada objeto por figura
-let AllObjectKeysInOrder=[["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"],["radio","area","perimeter"]];
+let AllObjectKeysInOrder=[["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"],["radio","area","perimeter"],["sideOne", "area", "perimeter"],["base","height","area","perimeter"],["radio", "centralAngle", "arcLenght", "area", "perimeter"],["sideOne","diagonalOne","diagonalTwo","area","perimeter"],[ "sideOne","nSides","apothem","area","perimeter"],[ "sideOne", "sideTwo", "height", "littleN", "base", "area", "perimeter"],["sideOne", "sideTwo", "sideThree", "sideFour", "height", "area", "perimeter"]];
 
 //Array para almacenar los id de los botones de Clear
 const idClear=[];
@@ -411,4 +415,121 @@ function calCircle(){
     }else{
         console.log("Oh no...");
     }
+}
+
+function calSquare(){
+    let objectKeysInOrder=AllObjectKeysInOrder[2];
+    let idArray=idArrays[2];
+    let minimumIdArray = MinimumIdAccepted(idArray,1);
+    let verificationNumber=Verification(minimumIdArray,0);
+    if(verificationNumber==1){
+        let square = new Square();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,square);
+        square.calArea();
+        square.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,square);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calRectangle(){
+    let objectKeysInOrder=AllObjectKeysInOrder[3];
+    let idArray=idArrays[3];
+    let minimumIdArray = MinimumIdAccepted(idArray,2);
+    let verificationNumber=Verification(minimumIdArray,0);
+    if(verificationNumber==1){
+        let rectangle = new Rectangle();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,rectangle);
+        rectangle.calArea();
+        rectangle.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,rectangle);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calCircularSector(){
+    let objectKeysInOrder=AllObjectKeysInOrder[4];
+    let idArray=idArrays[4];
+    let minimumIdArray = MinimumIdAccepted(idArray,3);
+    let verificationNumber=Verification(minimumIdArray,1);
+    if(verificationNumber==1){
+        let circularSector = new CircularSector();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,circularSector);
+        circularSector.calParameter();
+        circularSector.calArea();
+        circularSector.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,circularSector);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calRhombus(){
+    let objectKeysInOrder=AllObjectKeysInOrder[5];
+    let idArray=idArrays[5];
+    let minimumIdArray = MinimumIdAccepted(idArray,3);
+    let verificationNumber=Verification(minimumIdArray,1);
+    if(verificationNumber==1){
+        let rhombus = new Rhombus();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,rhombus);
+        rhombus.calDiagonal();
+        rhombus.calArea();
+        rhombus.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,rhombus);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calPolygon(){
+    let objectKeysInOrder=AllObjectKeysInOrder[6];
+    let idArray=idArrays[6];
+    let minimumIdArray = MinimumIdAccepted(idArray,3);
+    let verificationNumber=Verification(minimumIdArray,1);
+    if(verificationNumber==1){
+        let polygon = new Polygon();
+        OverwritingValues(minimumIdArray,objectKeysInOrder,polygon);
+        polygon.calApothem();
+        polygon.calPerimeter();
+        polygon.calArea();
+        ValuesToShow(idArray,objectKeysInOrder,polygon);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calRhomboid(){
+    let objectKeysInOrder=AllObjectKeysInOrder[7];
+    let idArray=idArrays[7];
+    let minimumIdArray = MinimumIdAccepted(idArray,4);
+    let verificationNumber=Verification(minimumIdArray,1);
+    if(verificationNumber==1){
+        let rhomboid = new Rhomboid(); 
+        OverwritingValues(minimumIdArray,objectKeysInOrder,rhomboid);
+        rhomboid.calArea();
+        rhomboid.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,rhomboid);
+    }else{
+        console.log("Oh no...");
+    }
+}
+
+function calTrapezium(){
+    let objectKeysInOrder=AllObjectKeysInOrder[8];
+    let idArray=idArrays[8];
+    let minimumIdArray = MinimumIdAccepted(idArray,4);
+    let verificationNumber=Verification(minimumIdArray,0);
+    if(verificationNumber==1){
+        let trapezium = new Trapezium(); 
+        OverwritingValues(minimumIdArray,objectKeysInOrder,trapezium);
+        trapezium.calHeight();
+        trapezium.calArea();
+        trapezium.calPerimeter();
+        ValuesToShow(idArray,objectKeysInOrder,trapezium);
+    }else{
+        console.log("Oh no...");
+    }
+
 }

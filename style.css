@@ -186,6 +186,10 @@
     margin:10px;
 }
 
+.mainOneContainer > label{
+    margin: 3px;
+}
+
 .mainOneContainer > p{
     color:#333333;
 }
@@ -296,15 +300,85 @@ h3{
 
 .triangle{
     background-image: url('/src/figures/triangle.png');
-    width: 250px;
-    height: 15vh;
+    width: 300px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.circle{
+    background-image: url('/src/figures/circle.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.square{
+    background-image: url('/src/figures/square.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.rectangle{
+    background-image: url('/src/figures/rectangle.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.circularSector{
+    background-image: url('/src/figures/circularSector.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.rhombus{
+    background-image: url('/src/figures/rhombus.png');
+    width: 300px;
+    height: 150px;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 10px;
 }
 
 
+.polygon{
+    background-image: url('/src/figures/polygon.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
 
+.rhomboid{
+    background-image: url('/src/figures/rhomboid.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
+
+.trapezium{
+    background-image: url('/src/figures/trapezium.png');
+    width: 300px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+}
 
 @media only screen and (min-width: 768px){
 
