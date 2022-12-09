@@ -318,35 +318,6 @@
                     <button id="clear8" type="button"">Clear</button>
                 </div>
             </div>
-            <div class="mainOneContainer">
-                <h4>Regular polygon</h4>
-                <figure class="polygon" alt="Regular polygon of side l, apothem a and n sides" title="Regular polygon of side l, apothem a and n sides"></figure>
-                <p>You must enter at least 2 of the 3 data indicated <span style="color:rgba(219, 8, 8, 0.945)">in red</span>. </p>
-                <label for="sidePolygon">
-                    <span style="color:rgba(219, 8, 8, 0.945)">Side</span>
-                    <input id="sidePolygon" type="number">
-                </label>
-                <label for="nSides">
-                    <span style="color:rgba(219, 8, 8, 0.945)">Number of sides</span>
-                    <input id="nSides" type="number">
-                </label>
-                <label for="apothem">
-                    <span style="color:rgba(219, 8, 8, 0.945)">Apothem</span>
-                    <input id="apothem" type="number">
-                </label>
-                <label for="areaPolygon">
-                    <span>Area</span>
-                    <input id="areaPolygon" type="number">
-                </label>
-                <label for="perimeterPolygon">
-                    <span>Perimeter</span>
-                    <input id="perimeterPolygon" type="number">
-                </label>
-                <div class="buttonContainer">
-                    <button type="button" onclick="calPolygon()">Calculate</button>
-                    <button id="clear6" type="button"">Clear</button>
-                </div>
-            </div>
         </div>
     </main>
     <footer class="footer">
@@ -363,7 +334,13 @@
             <p>All rights reserved.</p>
         </div>
     </footer>
-    <script src="figure.js""></script>
+    <div class="goTop">
+        <div class="goTopButton">
+            <i class="goTopArrow"></i>
+        </div>        
+    </div>
+    <script src="figure.js"></script>
+    <script src="goToTop.js"></script>
 </body>
 </html>
 
