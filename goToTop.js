@@ -1,5 +1,5 @@
 window.onscroll = function(){
-    if(document.documentElement.scrollTop > 10){
+    if(document.documentElement.scrollTop > 1250){
         document.querySelector('.goTop')
         .classList.add('show');
     }else{
@@ -14,4 +14,4 @@ document.querySelector('.goTop')
         top: 0,
         behavior: 'smooth',
     });
-});
+}); 

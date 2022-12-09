@@ -258,9 +258,9 @@ button > a {
 .goTop{
     position: fixed;
     bottom: 4rem;
-    right: 4rem; 
-    width: 4rem;
-    height: 6.6;
+    right: 1.5rem; 
+    width: 1.3rem;
+    height: 0rem;
     z-index: -1;
 }
 
@@ -270,13 +270,13 @@ button > a {
     background: #2071b2;
     border-radius: 50%;
     cursor: pointer;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: -1;
 }
 
-.goTopButton i{
+.goTopButton span{
     position: absolute;
     font-size: 1.7rem;
     top: 48%;
@@ -292,13 +292,13 @@ button > a {
 
 .show .goTopButton{
     animation: popup .3s ease-in-out;
-    width: 6.6rem;
-    height: 6.6rem;
+    width: 4.5rem;
+    height: 4.5rem; 
     z-index: 11;
 }
 
-.show i{
-    transform: translate(-50%,-50%) scale(1);
+.show span{
+    transform: translate(-50%, -50%) scale(1);
 }
 
 @keyframes popup{
@@ -307,18 +307,22 @@ button > a {
         height: 0rem;
     }
     50%{
-        width: 8rem;
-        height: 8rem;
+        width: 6rem;
+        height: 6rem;
     }
     100%{
-        width: 6.6rem;
-        height: 6.6rem;
+        width: 4.5rem;
+        height: 4.5rem;
     }
 }
 
 /*otherContents*/
 
 /*Home*/
+
+.mainIndex{
+    margin: 2.5rem;
+}
 
 .planeGeometric{
     background-image: url('./src/main/1.png');
