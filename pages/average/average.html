@@ -25,6 +25,52 @@
         </nav>
     </header>
     <main>
+        <h1>Statistical Location Calculator and Mean Types</h1>
+        <h3>Please enter your data, it's not necessary that they be ordered. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <p>Numeric data must be entered separated by commas, without spaces.</p>
+                <label for="dataStatistical">
+                    <input id="dataStatistical" type="text">
+                </label>
+                <p>Are your data from a population (i.e., are your data not from a sample)?</p>
+                <select id="isPoblation">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <p>Not sure? <a href="https://www.xvideos.com/" target="_blank">Click here.</a></p>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calAverages()">Calculate</button>
+                    <button id="clear" type="button"">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <label for="arithmeticMean">
+                    <span>Arithmetic Mean</span>
+                    <input id="arithmeticMean" type="number">
+                </label>
+                <label for="median">
+                    <span>Median</span>
+                    <input id="median" type="number">
+                </label>
+                <label for="mode">
+                    <span>Mode</span>
+                    <input id="mode" type="number">
+                </label>
+                <label for="midRange">
+                    <span>Mid-range</span>
+                    <input id="midRange" type="number">
+                </label>
+                <label for="range">
+                    <span>Range</span>
+                    <input id="mode" type="number">
+                </label>
+            </div>
+            <div class="mainOneContainer"></div>
+            <div class="mainOneContainer"></div>
+        </div>
     </main>
     <footer class="footer">
         <div class="footerContact">
@@ -44,7 +90,13 @@
             <span>↑</span>
         </div>        
     </div>
-    <script src="./figure.js"></script>
+    <script src="./average.js"></script>
     <script src="/goToTop.js"></script>
 </body>
 </html>
+
+
+
+
+
+
