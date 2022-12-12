@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">    
-     <title>MathWebPage - Figures</title>
+     <title>MathWebPage - Location and dispersion</title>
      <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -38,7 +38,7 @@
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
-                <p>Not sure? <a href="https://www.xvideos.com/" target="_blank">Click here.</a></p>
+                <p>Not sure? <a href="https://swapna-samir-shukla.medium.com/what-is-bessels-correction-is-it-really-needed-6f643dc7f84e" target="_blank">Click here.</a></p>
                 <div class="buttonContainer">
                     <button type="button" onclick="calAverages()">Calculate</button>
                     <button id="clear" type="button"">Clear</button>
@@ -47,6 +47,7 @@
         </div>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
+                <h4>Most common</h4>
                 <label for="arithmeticMean">
                     <span>Arithmetic Mean</span>
                     <input id="arithmeticMean" type="number">
@@ -59,17 +60,65 @@
                     <span>Mode</span>
                     <input id="mode" type="number">
                 </label>
+                <label for="firstQuartile">
+                    <span>First quartile</span>
+                    <input id="firstQuartile" type="number">
+                </label>
+                <label for="thirdQuartile">
+                    <span>Third quartile</span>
+                    <input id="thirdQuartile" type="number">
+                </label>
                 <label for="midRange">
-                    <span>Mid-range</span>
+                    <span>Mid-Range</span>
                     <input id="midRange" type="number">
+                </label>
+            </div>
+            <div class="mainOneContainer">
+            <h4>Dispersion measures</h4>
+                <label for="standardDeviation">
+                    <span id="isItPobOrSam"></span>
+                    <input id="standardDeviation" type="number">
+                </label>
+                <label for="variance">
+                    <span>Variance</span>
+                    <input id="variance" type="number">
+                </label>
+                <label for="interquartileRange">
+                    <span>Interquartile range</span>
+                    <input id="interquartileRange" type="number">
                 </label>
                 <label for="range">
                     <span>Range</span>
-                    <input id="mode" type="number">
+                    <input id="range" type="number">
+                </label>
+                <label for="coefVariation">
+                    <span>Coefficient of variation</span>
+                    <input id="coefVariation" type="number">
+                </label>
+                <label for="quartileCoefDispersion">
+                    <span>Quartile coefficient of dispersion</span>
+                    <input id="quartileCoefDispersion" type="number">
                 </label>
             </div>
-            <div class="mainOneContainer"></div>
-            <div class="mainOneContainer"></div>
+            <div class="mainOneContainer">
+                <h4>Central tendency measures</h4>
+                <label for="geometricMean">
+                    <span>Geometric mean</span>
+                    <input id="geometricMean" type="number">
+                </label>
+                <label for="harmonicMean">
+                    <span>Harmonic mean</span>
+                    <input id="harmonicMean" type="number">
+                </label>
+                <label for="rootMeanSquare">
+                    <span>Root mean square</span>
+                    <input id="rootMeanSquare" type="number">
+                </label>
+                <label for="interquartileMean">
+                    <span>Interquartile mean</span>
+                    <input id="interquartileMean" type="number">
+                </label>
+            </div>
         </div>
     </main>
     <footer class="footer">
