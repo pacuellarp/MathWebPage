@@ -6,6 +6,10 @@
     text-decoration: none;
 }
 
+input{
+    width: 5rem;
+}
+
 /* Header */
 
 .header{
@@ -447,6 +451,12 @@ h3{
     background-size: cover;
     background-repeat: no-repeat;
     margin: 10px;
+}
+
+/*LocationMeasures*/
+
+#inputDataStatistical, #outputDataStatistical{
+    width: 20rem;
 }
 
 @media only screen and (min-width: 997px){

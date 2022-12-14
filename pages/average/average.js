@@ -1,6 +1,13 @@
 var a = document.getElementById('isPoblation');
-a.addEventListener('change', ()=>{
-    console.log(a.value)
-},false);
+var b = document.getElementById('isItPobOrSam');
+var c = document.getElementById('spaces');
 
-console.log(a.value)
+a.addEventListener('change', ()=>{
+    if (a.value == 'Yes'){
+        b.innerText = "Population standard deviation";
+    }else{
+        b.innerText = "Sample standard deviation";
+    }
+},b.innerText = "Population standard deviation");
+
+
