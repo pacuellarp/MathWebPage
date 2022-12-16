@@ -1,3 +1,13 @@
+//Lista de listas de id por figura
+let idArrays = [["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"],["radioCircle","areaCircle","perimeterCircle"],["sideSquare","areaSquare","perimeterSquare"], ["baseRectangle","heightRectangle","areaRectangle","perimeterRectangle"],["radioCircularSector", "centralAngleCircularSector", "arcLenghtCircularSector", "areaCircularSector", "perimeterCircularSector"],["sideRhombus","diagonalOneRhombus","diagonalTwoRhombus","areaRhombus","perimeterRhombus"],[ "sidePolygon","nSides","apothem","areaPolygon","perimeterPolygon"],["sideOneRhomboid", "sideTwoRhomboid", "heightRhomboid","littleNRhomboid", "baseRhomboid", "areaRhomboid", "perimeterRhomboid"],["sideOneTrapezium", "sideTwoTrapezium", "sideThreeTrapezium", "sideFourTrapezium", "heightTrapezium", "areaTrapezium", "perimeterTrapezium"]]
+//Lista de listas de object keys de cada objeto por figura
+let AllObjectKeysInOrder=[["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"],["radio","area","perimeter"],["sideOne", "area", "perimeter"],["base","height","area","perimeter"],["radio", "centralAngle", "arcLenght", "area", "perimeter"],["sideOne","diagonalOne","diagonalTwo","area","perimeter"],[ "sideOne","nSides","apothem","area","perimeter"],[ "sideOne", "sideTwo", "height", "littleN", "base", "area", "perimeter"],["sideOne", "sideTwo", "sideThree", "sideFour", "height", "area", "perimeter"]];
+
+//Array para almacenar los id de los botones de Clear
+const idClear=[];
+//Array para almacenar el espacio de cada botón de Clear
+const clear=[];
+
 class Figure{
     constructor(perimeter,area){
         this.perimeter=perimeter;
@@ -302,15 +312,6 @@ function ValuesToShow(idArray,objectKeysInOrder,object){
     }
 }
 
-//Lista de listas de id por figura
-let idArrays = [["firstSideTriangle","secondSideTriangle","thirdSideTriangle","heightTriangle", "areaTriangle", "perimeterTriangle", "firstAngle", "secondAngle", "thirdAngle", "typeSideTriangle", "typeAngleTriangle"],["radioCircle","areaCircle","perimeterCircle"],["sideSquare","areaSquare","perimeterSquare"], ["baseRectangle","heightRectangle","areaRectangle","perimeterRectangle"],["radioCircularSector", "centralAngleCircularSector", "arcLenghtCircularSector", "areaCircularSector", "perimeterCircularSector"],["sideRhombus","diagonalOneRhombus","diagonalTwoRhombus","areaRhombus","perimeterRhombus"],[ "sidePolygon","nSides","apothem","areaPolygon","perimeterPolygon"],["sideOneRhomboid", "sideTwoRhomboid", "heightRhomboid","littleNRhomboid", "baseRhomboid", "areaRhomboid", "perimeterRhomboid"],["sideOneTrapezium", "sideTwoTrapezium", "sideThreeTrapezium", "sideFourTrapezium", "heightTrapezium", "areaTrapezium", "perimeterTrapezium"]]
-//Lista de listas de object keys de cada objeto por figura
-let AllObjectKeysInOrder=[["sideOne", "sideTwo", "sideThree", "height", "area", "perimeter", "alpha", "beta", "gamma", "typeSideTriangle", "typeAngleTriangle"],["radio","area","perimeter"],["sideOne", "area", "perimeter"],["base","height","area","perimeter"],["radio", "centralAngle", "arcLenght", "area", "perimeter"],["sideOne","diagonalOne","diagonalTwo","area","perimeter"],[ "sideOne","nSides","apothem","area","perimeter"],[ "sideOne", "sideTwo", "height", "littleN", "base", "area", "perimeter"],["sideOne", "sideTwo", "sideThree", "sideFour", "height", "area", "perimeter"]];
-
-//Array para almacenar los id de los botones de Clear
-const idClear=[];
-//Array para almacenar el espacio de cada botón de Clear
-const clear=[];
 
 //Se almacenan los id y los espacios de los botones de Clear
 for(i=0;i<9;i++){ 

@@ -26,14 +26,15 @@
     </header>
     <main>
         <h1>Statistical Location Calculator and Mean Types</h1>
-        <h3>Please enter your data, it's not necessary that they be ordered. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
+        <h3>Please enter your data, it's not necessary that they be sorted. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
                 <p>Numeric data must be entered separated by commas, without spaces.</p>
+                <p>Any empty space between two commas will be interpreted as a zero.</p>
                 <label for="inputDataStatistical">
                     <input id="inputDataStatistical" type="text">
                 </label>
-                <p>Are your data from a population (i.e., are your data not from a sample)?</p>
+                <p>Are your data from a population? (Answer 'No' if your data are from a sample).</p>
                 <select id="isPoblation">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -122,11 +123,11 @@
         </div>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
-                <p id="spaces"></p>
-                <p>Here is your numeric data, now is ordered.</p>
+                <p id="sorted">Here is your numeric data, now is sorted.</p>
                 <label for="outputDataStatistical">
                     <input id="outputDataStatistical" type="text">
                 </label>
+                <p id="spaces"></p>
                 </div>
             </div>
         </div>
