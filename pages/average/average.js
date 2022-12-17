@@ -133,6 +133,56 @@ class LocAndDis{
     calmidRange(){
         this.midRange=(data[0]+data[data.length-1])/2
     }
+    calStandardDeviation(){
+        let dem=0;
+        this.standardDeviation=0;
+        if (isPoblation.value == 'Yes'){
+            dem=data.length;
+        }else{
+            dem=data.length-1;
+        }
+        for(var i=0;i<data.length;i++){
+            this.standardDeviation+=(data[0]-this.arithmeticMean)**2;
+        };
+        this.standardDeviation=this.standardDeviation/dem;
+        this.standardDeviation=Math.sqrt(this.standardDeviation);
+    }
+    calVariance(){
+        this.variance=(this.standardDeviation)**2;
+    }
+    calInterquartileRange(){
+        this.interquartileRange=this.thirdQuartile-this.firstQuartile;
+    }
+    calRange(){
+        this.range=data[0]+data[data.length-1]
+    }
+    calCoefVariation(){
+        if(this.arithmeticMean==0){
+            this.coefVariation="Tends to infinity";
+        }else{
+            this.coefVariation=this.standardDeviation/this.arithmeticMean;
+        }
+    }
+    calQuartileCoefDispersion(){
+        this.quartileCoefDispersion=(this.thirdQuartile-this.firstQuartile)/(this.thirdQuartile+this.firstQuartile);
+    }
+    calGeometricMean(){
+        var ver=0;
+        for(var i=0;i<data.length;i++){
+            if(data[i]<0){
+                ver+=1;
+            };
+        };
+        if(ver!=0){
+            this.geometricMean='-';
+        }else{
+            this.geometricMean=data[0];
+            for(var i=1;i<data.length;i++){
+                  this.geometricMean=this.geometricMean*data[i];
+            };
+            this.geometricMean=(this.geometricMean)**(1/data.length)
+        }
+    }
 }
 
 
