@@ -6,6 +6,12 @@ let inputData = document.getElementById('inputDataStatistical');
 let outputData = document.getElementById('outputDataStatistical');
 let data = '';
 
+let idArrays=["arithmeticMean","median","mode","firstQuartile","thirdQuartile","midRange","standardDeviation","variance","interquartileRange","range","coefVariation","quartileCoefDispersion","geometricMean","harmonicMean","rootMeanSquare","interquartileMean"]
+
+function Round(num){
+    return Math.round((num)*1000)/1000;
+}
+
 isPoblation.addEventListener('change', ()=>{
     if (isPoblation.value == 'Yes'){
         isItPobOrSam.innerText = "Population standard deviation";
@@ -21,9 +27,9 @@ function addCode(s,o){
         spaces.innerText ="";  
     };
     if (o==1){
-        sorted.innerText = "Your data were already sorted, great!";
-    }else{
         sorted.innerText = "Here is your numeric data, now is sorted.";
+    }else{
+        sorted.innerText = "Your data already were sorted, great!";
     }
 }
 
@@ -43,13 +49,13 @@ function sortedAndSpaces(){
             data[i] = data[i]*1;
         };
     };
-    const data0={...data};
+    const data0=data.slice();
     if(isNum == 0){
         data = data.sort((a,b) => a-b);
         for(var i = 0; i < data.length; i++){
             if (data[i] != data0[i]){
-            }else{
                 o+=1;
+            }else{
             };
           };
           if (o != 0){
@@ -89,7 +95,7 @@ class LocAndDis{
         this.interquartileMean=interquartileMean;
     }
     calArithmeticMean(){
-        this.arithmeticMean=data.reduce((a,b)=>a+b,0)/data.length;
+        this.arithmeticMean=Round(data.reduce((a,b)=>a+b,0)/data.length);
     }
     calMedian(){
         const mid = Math.floor(data.length / 2);
@@ -142,39 +148,39 @@ class LocAndDis{
             dem=data.length-1;
         }
         for(var i=0;i<data.length;i++){
-            this.standardDeviation+=(data[0]-this.arithmeticMean)**2;
+            this.standardDeviation+=(data[i]-this.arithmeticMean)**2;
         };
         this.standardDeviation=this.standardDeviation/dem;
-        this.standardDeviation=Math.sqrt(this.standardDeviation);
+        this.standardDeviation=Round(Math.sqrt(this.standardDeviation));
     }
     calVariance(){
-        this.variance=(this.standardDeviation)**2;
+        this.variance=Round((this.standardDeviation)**2);
     }
     calInterquartileRange(){
         this.interquartileRange=this.thirdQuartile-this.firstQuartile;
     }
     calRange(){
-        this.range=data[0]+data[data.length-1]
+        this.range=-data[0]+data[data.length-1]
     }
     calCoefVariation(){
         if(this.arithmeticMean==0){
             this.coefVariation="Tends to infinity";
         }else{
-            this.coefVariation=this.standardDeviation/this.arithmeticMean;
+            this.coefVariation=Round(this.standardDeviation/this.arithmeticMean);
         }
     }
     calQuartileCoefDispersion(){
-        this.quartileCoefDispersion=(this.thirdQuartile-this.firstQuartile)/(this.thirdQuartile+this.firstQuartile);
+        this.quartileCoefDispersion=Round((this.thirdQuartile-this.firstQuartile)/(this.thirdQuartile+this.firstQuartile));
     }
     calGeometricMean(){
-        var ver=0;
+        let ver=0;
         for(var i=0;i<data.length;i++){
-            if(data[i]<0){
+            if(data[i]<=0){
                 ver+=1;
             };
         };
         if(ver!=0){
-            this.geometricMean='-';
+            this.geometricMean='';
         }else{
             this.geometricMean=data[0];
             for(var i=1;i<data.length;i++){
@@ -182,9 +188,79 @@ class LocAndDis{
             };
             this.geometricMean=(this.geometricMean)**(1/data.length)
         }
+        this.geometricMean=Round(this.geometricMean)
+    }
+    calHarmonicMean(){
+        this.harmonicMean=0;
+        let ver=0;
+        for(var i=0;i<data.length;i++){
+            if(data[i]==0){
+                ver+=1;
+            };
+        };
+        if(ver!=0){
+            this.harmonicMean='';
+        }else{
+            for(var i=0;i<data.length;i++){
+                this.harmonicMean+=(1/data[i]);
+            }
+            this.harmonicMean=Round(((this.harmonicMean)**(-1))*data.length)
+        }
+    }
+    calRootMeanSquare(){
+        this.rootMeanSquare=0;
+        for(var i=0;i<data.length;i++){
+            this.rootMeanSquare+=(data[i])**2;
+        };
+        this.rootMeanSquare=Round(Math.sqrt(this.rootMeanSquare*(1/data.length)))
+    }
+    calInterquartileMean(){
+        if(data.length%4==0){
+            this.interquartileMean=0;
+            let min=(data.length/4);
+            let max=3*data.length/4;
+            for(var i=min;i<max;i++){
+                this.interquartileMean+=data[i]
+            }
+            this.interquartileMean=Round(this.interquartileMean*2/data.length);
+        }else{
+            let a=data.length/4
+            let b=a*2
+            a=Math.floor(a)
+            let c=data.slice(a,(data.length-a))
+            let d=(b-(c.slice(1,c.length-1).length))/2
+            let e=c.slice(1,c.length-1).reduce((a,b)=>a+b,0)
+            this.interquartileMean=Round((e+(c[0]+c[c.length-1])*d)/b)
+        }
     }
 }
 
+function ValuesToShow(idArray,object){
+    let box;
+    for(var i=0;i<idArray.length;i++){
+        box = document.getElementById(idArray[i]);//Revisa cada caja con el id indicado
+        if(box){//Espera que exista el valor
+            box.value = object[idArray[i]];
+        }
+    }
+}
+
+let clr=document.getElementById("clear")
+clr.addEventListener("click",Clear,false);
+
+function Clear(){
+    let box;
+    let ids=idArrays.slice()
+    ids.push("inputDataStatistical")
+    ids.push("outputDataStatistical")
+    for(var i=0;i<ids.length;i++){
+        box = document.getElementById(ids[i]);//Revisa cada caja con el id indicado
+        if(box){//Espera que exista el valor
+            box.value = "";
+        }
+    }
+    addCode(0,1)
+}
 
 function calAverages(){
     let ver = sortedAndSpaces();
@@ -195,14 +271,18 @@ function calAverages(){
         locDis.calMedian()
         locDis.calMode()
         locDis.calQuartiles()
-        let box;
-        box = document.getElementById('arithmeticMean')
-        if(box){
-            box.value = locDis.arithmeticMean;
-        }
-        console.log(locDis["arithmeticMean"])
-        console.log(locDis["median"])
-        console.log(locDis["mode"])
+        locDis.calmidRange()
+        locDis.calStandardDeviation()
+        locDis.calVariance()
+        locDis.calInterquartileRange()
+        locDis.calRange()
+        locDis.calCoefVariation()
+        locDis.calQuartileCoefDispersion()
+        locDis.calGeometricMean()
+        locDis.calHarmonicMean()
+        locDis.calRootMeanSquare()
+        locDis.calInterquartileMean()
+        ValuesToShow(idArrays,locDis)
     }else{
         alert("Please enter only numeric data.");
     };
