@@ -233,6 +233,90 @@ class LocAndDis{
             this.interquartileMean=Round((e+(c[0]+c[c.length-1])*d)/b)
         }
     }
+    drawBoxPlot(){
+        let canvasTriangle = document.getElementById("drawBoxPlot");
+        let draw = canvasTriangle.getContext("2d");
+        let li=this.firstQuartile-1.5*this.interquartileRange;
+        let ls=this.thirdQuartile+1.5*this.interquartileRange;
+        let lsF=ls.toFixed(1);
+        let prop=350/(ls-li)
+        draw.clearRect(0,0,350,150);
+        draw.beginPath();
+        draw.moveTo(0,135);
+        draw.lineTo(350,135);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(0,45);
+        draw.lineTo(0,105);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(0,130);
+        draw.lineTo(0,140);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(this.firstQuartile*prop,130);
+        draw.lineTo(this.firstQuartile*prop,140);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(this.median*prop,130);
+        draw.lineTo(this.median*prop,140);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(this.thirdQuartile*prop,130);
+        draw.lineTo(this.thirdQuartile*prop,140);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(350,130);
+        draw.lineTo(350,140);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(350,45);
+        draw.lineTo(350,105);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(0,75);
+        draw.lineTo(this.firstQuartile*prop,75);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(350,75);
+        draw.lineTo(this.thirdQuartile*prop,75);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.beginPath();
+        draw.rect(this.firstQuartile*prop, 45, (this.median-this.firstQuartile)*prop, 60);
+        draw.strokeStyle="black";
+        draw.fillStyle="blue";
+        draw.fill();
+        draw.stroke();
+        draw.beginPath();
+        draw.rect(this.median*prop, 45, (this.thirdQuartile-this.median)*prop, 60);
+        draw.strokeStyle="black";
+        draw.fillStyle="green";
+        draw.fill();
+        draw.stroke();
+        draw.beginPath();
+        draw.moveTo(this.median*prop,45);
+        draw.lineTo(this.median*prop,105);
+        draw.strokeStyle="black";
+        draw.stroke();
+        draw.font="10px Arial";
+        draw.fillStyle="black";
+        draw.fillText(`${li}`,0,150)
+        draw.fillText(`${lsF}`,326,150)
+        draw.fillText(`${this.firstQuartile}`,this.firstQuartile*prop,150)
+        draw.fillText(`${this.thirdQuartile}`,this.thirdQuartile*prop,150)
+        draw.fillText(`${this.median}`,this.median*prop,150)
+        draw.closePath();
+    }
 }
 
 function ValuesToShow(idArray,object){
@@ -282,6 +366,7 @@ function calAverages(){
         locDis.calHarmonicMean()
         locDis.calRootMeanSquare()
         locDis.calInterquartileMean()
+        locDis.drawBoxPlot()
         ValuesToShow(idArrays,locDis)
     }else{
         alert("Please enter only numeric data.");
