@@ -459,6 +459,28 @@ h3{
     width: 20rem;
 }
 
+#outliersTable{
+    border-collapse: collapse;
+    margin-top:2rem;
+    margin-bottom:1rem;
+  }
+  
+  #outliersTable td, #outliersTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #outliersTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #outliersTable tr:hover {background-color: #ddd;}
+  
+  #outliersTable th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #385bf7;
+    color: white;
+  }
+
 @media only screen and (min-width: 997px){
 
     .mainThreeContainer{

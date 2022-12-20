@@ -4,6 +4,7 @@ let sorted = document.getElementById('sorted');
 let spaces = document.getElementById('spaces');
 let inputData = document.getElementById('inputDataStatistical');
 let outputData = document.getElementById('outputDataStatistical');
+let table = document.getElementById('outliersTable');
 let data = '';
 
 let idArrays=["arithmeticMean","median","mode","firstQuartile","thirdQuartile","midRange","standardDeviation","variance","interquartileRange","range","coefVariation","quartileCoefDispersion","geometricMean","harmonicMean","rootMeanSquare","interquartileMean"]
@@ -234,8 +235,8 @@ class LocAndDis{
         }
     }
     drawBoxPlot(){
-        let canvasTriangle = document.getElementById("drawBoxPlot");
-        let draw = canvasTriangle.getContext("2d");
+        let canvasBoxPlot = document.getElementById("drawBoxPlot");
+        let draw = canvasBoxPlot.getContext("2d");
         let li=this.firstQuartile-1.5*this.interquartileRange;
         let ls=this.thirdQuartile+1.5*this.interquartileRange;
         let lsF=ls.toFixed(1);
@@ -317,7 +318,60 @@ class LocAndDis{
         draw.fillText(`${this.median}`,this.median*prop,150)
         draw.closePath();
     }
+    makeTable(){
+        let le=this.firstQuartile-3*this.interquartileRange;
+        let lo=this.firstQuartile-1.5*this.interquartileRange;
+        let uo=this.thirdQuartile+1.5*this.interquartileRange;
+        let ue=this.thirdQuartile+3*this.interquartileRange;
+        let led=data.filter(x=>x<le);
+        let lod=data.filter(x=>x<lo&&x>=le);
+        let uod=data.filter(x=>x>uo&&x<=ue);
+        let ued=data.filter(x=>x>ue);
+        let max=Math.max(led.length,lod.length,uod.length,ued.length);
+        let lex;
+        let lox;
+        let uox;
+        let uex;
+    
+        table.innerHTML+=`<tr>
+        <th>Lower extremes</th>
+        <th>Lower outliers</th>
+        <th>Upper outliers</th>
+        <th>Upper extremes</th>
+        </tr>`
+    
+        for (var i=0;i<max;i++){
+            if(typeof(led[i])=='number'){
+                lex= led[i];
+            }else{
+                lex= '-'
+            }
+            if(typeof(lod[i])=='number'){
+                lox= lod[i];
+            }else{
+                lox= '-'
+            }
+            if(typeof(uod[i])=='number'){
+                uox= uod[i];
+            }else{
+                uox= '-'
+            }
+            if(typeof(ued[i])=='number'){
+                uex= ued[i];
+            }else{
+                uex= '-'
+            }
+            table.innerHTML+=`<tr>
+            <td>${lex}</td>
+            <td>${lox}</td>
+            <td>${uox}</td>
+            <td>${uex}</td>
+            </tr>`
+        }
+    }
 }
+
+
 
 function ValuesToShow(idArray,object){
     let box;
@@ -344,7 +398,18 @@ function Clear(){
         }
     }
     addCode(0,1)
+    table.innerHTML=``;
+    let canvasBoxPlot = document.getElementById("drawBoxPlot");
+    let draw = canvasBoxPlot.getContext("2d");
+    draw.beginPath();
+    draw.rect(0,0,350,150);
+    draw.strokeStyle="white";
+    draw.fillStyle="white";
+    draw.fill();
+    draw.stroke();
+    draw.closePath();
 }
+
 
 function calAverages(){
     let ver = sortedAndSpaces();
@@ -368,6 +433,7 @@ function calAverages(){
         locDis.calInterquartileMean()
         locDis.drawBoxPlot()
         ValuesToShow(idArrays,locDis)
+        locDis.makeTable()
     }else{
         alert("Please enter only numeric data.");
     };
