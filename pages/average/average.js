@@ -412,6 +412,7 @@ function Clear(){
 
 
 function calAverages(){
+    table.innerHTML=``;
     let ver = sortedAndSpaces();
     if(ver == 1){
         outData();
