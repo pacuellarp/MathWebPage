@@ -29,7 +29,16 @@
         <h3>Please enter your data, it's not necessary that they be sorted. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
-                <p>Interest rate conversor</p>
+                <h4>Interest rate conversor</h4>
+                <p>Select mode:</p>
+                <select id="interestMode">
+                    <option value="NomToEff">Nominal to Effective Rate</option>
+                    <option value="EffToNom">Effective to Nominal Rate</option>
+                    <option value="EffToEff">Effective to Effective Rate</option>
+                    <option value="NomToNom">Equivalent Nominal Rates</option>
+                </select>
+                <div id="interest">
+                </div>
             </div>
         </div>
     </main>
