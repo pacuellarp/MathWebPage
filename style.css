@@ -188,15 +188,15 @@ input{
     padding: 1rem;
 }
 
-.mainOneContainer > h4, .mainOneContainer > figure, .mainOneContainer > p, .mainOneContainer > button {
+.mainOneContainer  h4, .mainOneContainer  figure, .mainOneContainer  p, .mainOneContainer  button {
     margin:10px;
 }
 
-.mainOneContainer > label{
+.mainOneContainer  label{
     margin: 3px;
 }
 
-.mainOneContainer > p{
+.mainOneContainer  p{
     color:#333333;
 }
 
@@ -254,8 +254,7 @@ button > a {
 }
 
 .buttonContainer{
-    display: flex;
-    flex-direction: row;
+    display:block;
     margin: 10px;
 }
 
