@@ -30,13 +30,7 @@ class WriteInterest{
             <button type="button" onclick="calInterest()">Calculate</button>
             <button type="button" id="clear1">Clear</button>
         </div>
-            <p>Resulting Effective Interest Rate:</p>
-            <div>
-            <label for="eRate2">
-                <input id="eRate2" type="text">
-            </label>
-            <select id='eRate2Time'>${this.timeRate}
-        <div/>`;
+            <p>Resulting Effective Interest Rate:</p>`;
         this.ETN=`<p>Effective Interest Rate (%):</p>
         <div>
             <label for="eRate">
@@ -47,16 +41,10 @@ class WriteInterest{
         <p>Compounding Frequency for Nominal Rate:</p>
         <select id='nRate2CompTime'>${this.timeRate}
         <div class="buttonContainer">
-            <button type="button" onclick="calInterest">Calculate</button>
+            <button type="button" onclick="calInterest()">Calculate</button>
             <button type="button" id="clear1">Clear</button>
         </div>
-            <p>Resulting Nominal Interest Rate (%):</p>
-            <div>
-            <label for="nRate2">
-                <input id="nRate2" type="text">
-            </label>
-            <select id='nRate2Time'>${this.timeRate}
-            </div>`;
+            <p>Resulting Nominal Interest Rate (%):</p>`;
         this.ETE=`<p>Effective Interest Rate (%):</p>
             <div>
                 <label for="eRate">
@@ -65,16 +53,10 @@ class WriteInterest{
                 <select id='eRateTime'>${this.timeRate}
             </div>
             <div class="buttonContainer">
-            <button type="button" onclick="calInterest">Calculate</button>
+            <button type="button" onclick="calInterest()">Calculate</button>
             <button type="button" id="clear1">Clear</button>
         </div>
-        <p>Equivalent Effective Interest Rate (%):</p>
-        <div>
-            <label for="eRate2">
-                <input id="eRate2" type="number">
-            </label>
-            <select id='eRate2Time'>${this.timeRate}
-        </div>`;
+        <p>Equivalent Effective Interest Rate (%):</p>`;
         this.NTN=`<p>Initial Nominal Interest Rate (%):</p>
         <div>
             <label for="nRate">
@@ -87,29 +69,13 @@ class WriteInterest{
         <p>Compounding Frequency for Equivalent rate:</p>
         <select id='nRate2CompTime'>${this.timeRate}
         <div class="buttonContainer">
-            <button type="button" onclick="calInterest">Calculate</button>
+            <button type="button" onclick="calInterest()">Calculate</button>
             <button type="button" id="clear1">Clear</button>
         </div>
-        <p>Equivalent Nominal Interest Rate (%):</p>
-        <div>
-            <label for="nRate2">
-                <input id="nRate2" type="number">
-            </label>
-            <select id='nRate2Time'>${this.timeRate}
-        </div>`;
+        <p>Equivalent Nominal Interest Rate (%):</p>`;
         this.eRate=0;
         this.nRate=0;
-        this.eRate2={
-            annual:0,
-            biannual:0,
-            fourmonthly:0,
-            quarterly:0,
-            bimonthly:0,
-            monthly:0,
-            biweekly:0,
-            diary:0,
-        }
-        this.nRate2={
+        this.rate2={
             annual:0,
             biannual:0,
             fourmonthly:0,
@@ -132,63 +98,73 @@ class WriteInterest{
         return Round((((1+(nRate*nRateTime/nRateCompTime))**(nRateCompTime/nRate2CompTime)-1)*nRate2CompTime)/nRate2Time);
     }
     calNTE(){
-        this.eRate2.annual=((1+(this.nRate*this.nRateTime/this.nRateCompTime))**(this.nRateCompTime))-1;
+        this.rate2.annual=((1+(this.nRate*this.nRateTime/this.nRateCompTime))**(this.nRateCompTime))-1;
         let i=0;
-        for(const prop in this.eRate2){
-            this.eRate2[prop]=this.ETEFun(this.eRate2.annual,1,this.times[i]);
+        for(const prop in this.rate2){
+            this.rate2[prop]=this.ETEFun(this.rate2.annual,1,this.times[i]);
             i+=1;
         }
     }
     calETN(){
         this.eRate=this.ETEFun(this.eRate,this.eRateTime,1);
-        this.nRate2.annual=((this.eRate+1)**(1/this.nRate2CompTime)-1)*this.nRate2CompTime;
+        this.rate2.annual=((this.eRate+1)**(1/this.nRate2CompTime)-1)*this.nRate2CompTime;
         let i=0;
-        for(const prop in this.nRate2){
-            this.nRate2[prop]=this.NTNFun(this.nRate2.annual,1,this.nRate2CompTime,this.nRate2CompTime,this.times[i]);
+        for(const prop in this.rate2){
+            this.rate2[prop]=this.NTNFun(this.rate2.annual,1,this.nRate2CompTime,this.nRate2CompTime,this.times[i]);
             i+=1;
         }
     }
     calETE(){
         let i=0;
-        for(const prop in this.eRate2){
-            this.eRate2[prop]=this.ETEFun(this.eRate,this.eRateTime,this.times[i]);
+        for(const prop in this.rate2){
+            this.rate2[prop]=this.ETEFun(this.eRate,this.eRateTime,this.times[i]);
             i+=1;
         }
     }
     calNTN(){
         let i=0;
-        for(const prop in this.nRate2){
-            this.nRate2[prop]=this.NTNFun(this.nRate,this.nRateTime,this.nRateCompTime,this.nRate2CompTime,this.times[i]);
+        for(const prop in this.rate2){
+            this.rate2[prop]=this.NTNFun(this.nRate,this.nRateTime,this.nRateCompTime,this.nRate2CompTime,this.times[i]);
             i+=1;
         }
     };
 }
 
+function vars(){
+    var nRate = document.getElementById('nRate');
+    var nRateTime = document.getElementById('nRateTime');
+    var eRate = document.getElementById('eRate');
+    var eRateTime = document.getElementById('eRateTime');
+    var nRateCompTime = document.getElementById('nRateCompTime');
+    var nRate2CompTime = document.getElementById('nRate2CompTime');
+    var rate2 = document.getElementById('rate2');
+    var rate2Time = document.getElementById('rate2Time');
+};
+
 let wi= new WriteInterest()
+vars();
 
 
 interestMode.addEventListener('change',()=>{
     if(interestMode.value=="NomToEff"){
         interestData.innerHTML=wi.NTE;
+        vars();
+        rate2.value=``;
     }else if(interestMode.value=="EffToNom"){
         interestData.innerHTML=wi.ETN;
+        vars();
+        rate2.value=``;
     }else if(interestMode.value=="EffToEff"){
         interestData.innerHTML=wi.ETE;
+        vars();
+        rate2.value=``;
     }else if(interestMode.value=="NomToNom"){
         interestData.innerHTML=wi.NTN;
+        vars();
+        rate2.value=``;
     }
-},interestData.innerHTML=wi.NTE)
+},interestData.innerHTML=wi.NTE, vars())
 
-let nRate = document.getElementById('nRate');
-let nRate2 = document.getElementById('nRate2');
-let nRateTime = document.getElementById('nRateTime');
-let nRate2Time = document.getElementById('nRate2Time');
-let eRate = document.getElementById('eRate');
-let eRate2 = document.getElementById('eRate2');
-let eRateTime = document.getElementById('eRateTime');
-let eRate2Time = document.getElementById('eRate2Time');
-let nRateCompTime = document.getElementById('nRateCompTime');
-let nRate2CompTime = document.getElementById('nRate2CompTime');
 
 
 function calInterest(){
@@ -197,55 +173,32 @@ function calInterest(){
         wi.nRateTime=nRateTime.value*1;
         wi.nRateCompTime=nRateCompTime.value*1;
         wi.calNTE();
-        eRate2.value=`${wi.eRate2.annual*100}%`
+        rate2.value=`${wi.rate2.annual*100}%`
     }else if(interestMode.value=='EffToNom'){
         wi.eRate=(eRate.value*1)/100;
         wi.eRateTime=eRateTime.value*1;
         wi.nRate2CompTime=nRate2CompTime.value*1;
         wi.calETN();
-        nRate2.value=`${wi.nRate2.annual*100}%`
-    }
-
+        rate2.value=`${wi.rate2.annual*100}%`
+    };
 };
 
-eRate2Time.addEventListener('change',()=>{
-    if(eRate2Time.value=="1"){
-        eRate2.value=`${wi.eRate2.annual*100}%`;
-    }else if(eRate2Time.value=="2"){
-        eRate2.value=`${wi.eRate2.biannual*100}%`;
-    }else if(eRate2Time.value=="3"){
-        eRate2.value=`${wi.eRate2.fourmonthly*100}%`;
-    }else if(eRate2Time.value=="4"){
-        eRate2.value=`${wi.eRate2.quarterly*100}%`;
-    }else if(eRate2Time.value=="6"){
-        eRate2.value=`${wi.eRate2.bimonthly*100}%`;
-    }else if(eRate2Time.value=="12"){
-        eRate2.value=`${wi.eRate2.monthly*100}%`;
-    }else if(eRate2Time.value=="24"){
-        eRate2.value=`${wi.eRate2.biweekly*100}%`;
-    }else if(eRate2Time.value=="360"){
-        eRate2.value=`${wi.eRate2.diary*100}%`;
+rate2Time.addEventListener('change',()=>{
+    if(rate2Time.value=="1"){
+        rate2.value=`${wi.rate2.annual*100}%`;
+    }else if(rate2Time.value=="2"){
+        rate2.value=`${wi.rate2.biannual*100}%`;
+    }else if(rate2Time.value=="3"){
+        rate2.value=`${wi.rate2.fourmonthly*100}%`;
+    }else if(rate2Time.value=="4"){
+        rate2.value=`${wi.rate2.quarterly*100}%`;;
+    }else if(rate2Time.value=="6"){
+        rate2.value=`${wi.rate2.bimonthly*100}%`;
+    }else if(rate2Time.value=="12"){
+        rate2.value=`${wi.rate2.monthly*100}%`;
+    }else if(rate2Time.value=="24"){
+        rate2.value=`${wi.rate2.biweekly*100}%`;
+    }else if(rate2Time.value=="360"){
+        rate2.value=`${wi.rate2.diary*100}%`;
     };
-},eRate2.value=``)
-
-if(interestMode.value=='EffToNom'){
-    nRate2Time.addEventListener('change',()=>{
-        if(nRate2Time.value=="1"){
-            nRate2.value=`${wi.nRate2.annual*100}%`;
-        }else if(nRate2Time.value=="2"){
-            nRate2.value=`${wi.nRate2.biannual*100}%`;
-        }else if(nRate2Time.value=="3"){
-            nRate2.value=`${wi.nRate2.fourmonthly*100}%`;
-        }else if(nRate2Time.value=="4"){
-            nRate2.value=`${wi.nRate2.quarterly*100}%`;
-        }else if(nRate2Time.value=="6"){
-            nRate2.value=`${wi.nRate2.bimonthly*100}%`;
-        }else if(nRate2Time.value=="12"){
-            nRate2.value=`${wi.nRate2.monthly*100}%`;
-        }else if(nRate2Time.value=="24"){
-            nRate2.value=`${wi.nRate2.biweekly*100}%`;
-        }else if(nRate2Time.value=="360"){
-            nRate2.value=`${wi.nRate2.diary*100}%`;
-        };
-    },nRate2.value=``)
-}
+},rate2.value=``);
