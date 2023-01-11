@@ -28,7 +28,7 @@ class WriteInterest{
         <select id="nRateCompTime">${this.timeRate}
         <div class="buttonContainer">
             <button type="button" onclick="calInterest()">Calculate</button>
-            <button type="button" id="clear1">Clear</button>
+            <button type="button" onclick="clear1()">Clear</button>
         </div>
             <p>Resulting Effective Interest Rate:</p>`;
         this.ETN=`<p>Effective Interest Rate (%):</p>
@@ -42,7 +42,7 @@ class WriteInterest{
         <select id='nRate2CompTime'>${this.timeRate}
         <div class="buttonContainer">
             <button type="button" onclick="calInterest()">Calculate</button>
-            <button type="button" id="clear1">Clear</button>
+            <button type="button" onclick="clear1()">Clear</button>
         </div>
             <p>Resulting Nominal Interest Rate (%):</p>`;
         this.ETE=`<p>Effective Interest Rate (%):</p>
@@ -54,7 +54,7 @@ class WriteInterest{
             </div>
             <div class="buttonContainer">
             <button type="button" onclick="calInterest()">Calculate</button>
-            <button type="button" id="clear1">Clear</button>
+            <button type="button" onclick="clear1()">Clear</button>
         </div>
         <p>Equivalent Effective Interest Rate (%):</p>`;
         this.NTN=`<p>Initial Nominal Interest Rate (%):</p>
@@ -70,7 +70,7 @@ class WriteInterest{
         <select id='nRate2CompTime'>${this.timeRate}
         <div class="buttonContainer">
             <button type="button" onclick="calInterest()">Calculate</button>
-            <button type="button" id="clear1">Clear</button>
+            <button type="button" onclick="clear1()">Clear</button>
         </div>
         <p>Equivalent Nominal Interest Rate (%):</p>`;
         this.eRate=0;
@@ -139,6 +139,7 @@ function vars(){
     var nRate2CompTime = document.getElementById('nRate2CompTime');
     var rate2 = document.getElementById('rate2');
     var rate2Time = document.getElementById('rate2Time');
+    var clear1 = document.getElementById('clear1');
 };
 
 let wi= new WriteInterest()
@@ -180,7 +181,41 @@ function calInterest(){
         wi.nRate2CompTime=nRate2CompTime.value*1;
         wi.calETN();
         rate2.value=`${wi.rate2.annual*100}%`
+    }else if(interestMode.value=='EffToEff'){
+        wi.eRate=(eRate.value*1)/100;
+        wi.eRateTime=eRateTime.value*1;
+        wi.calETE();
+        rate2.value=`${wi.rate2.annual*100}%`
+    }else if(interestMode.value=='NomToNom'){
+        wi.nRate=(nRate.value*1)/100;
+        wi.nRateTime=nRateTime.value*1;
+        wi.nRateCompTime=nRateCompTime.value*1;
+        wi.nRate2CompTime=nRate2CompTime.value*1;
+        wi.calNTN();
+        rate2.value=`${wi.rate2.annual*100}%`
+    }
+};
+
+function clear1(){
+    if(interestMode.value=="NomToEff" || interestMode.value=="NomToNom"){
+        nRate.value = '';
+        nRateTime.value = '1';
+        nRateCompTime.value = '1';
+        if(interestMode.value=="NomToNom"){
+            nRate2CompTime.value = '1';
+        };
     };
+    if(interestMode.value=="EffToEff" || interestMode.value=="EffToNom"){
+        eRate.value = '';
+        eRateTime.value = '1';
+        if(interestMode.value=="EffToNom"){
+            nRate2CompTime.value = '1';
+        };
+    };
+    if(rate2){
+        rate2Time.value = '1';
+        rate2.value = '';
+    };   
 };
 
 rate2Time.addEventListener('change',()=>{
@@ -202,3 +237,5 @@ rate2Time.addEventListener('change',()=>{
         rate2.value=`${wi.rate2.diary*100}%`;
     };
 },rate2.value=``);
+
+
