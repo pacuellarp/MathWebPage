@@ -29,7 +29,7 @@
         <h3>Please enter your data, it's not necessary that they be sorted. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
-                <h4>Interest rate conversor</h4>
+                <h4>Interest Rate Conversor</h4>
                 <p>Select mode:</p>
                 <select id="interestMode">
                     <option value="NomToEff">Nominal to Effective Rate</option>
@@ -53,6 +53,23 @@
                         <option value="24">Biweekly</option>
                         <option value="360">Diary</option>
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="mainThreeContainer">
+            <div class="mainOneContainer">
+                <h4>Time Value of Money (Compounded Interest)</h4>
+                <p>Select a standard calculation:</p>
+                <div>
+                    <select id="initialCompoundedCalculation">
+                        <option value="P">Present value (P)</option>
+                        <option value="F">Future value (F)</option>
+                        <option value="A">Repeating payment (A)</option>
+                        <option value="G">Initial gradient payment (G)</option>
+                        <option value="D">Initial exponentially increasing payment (D)</option>
+                    </select>
+                    <p>to</p>
+                    <select id="compoundedCalculation"></select>
                 </div>
             </div>
         </div>

@@ -1,5 +1,9 @@
 let interestMode = document.getElementById('interestMode');
 let interestData = document.getElementById('interestData');
+let compoundedCalculation = document.getElementById('compoundedCalculation');
+let initialCompoundedCalculation = document.getElementById('initialCompoundedCalculation');
+
+
 
 function Round(num){
     return Math.round((num)*1000000)/1000000;
@@ -128,6 +132,12 @@ class WriteInterest{
             i+=1;
         }
     };
+};
+
+class WriteCompoundedInterest{
+    constructor(){
+        this.compoundedCalculation=[['P',`<option value="P">Present value (P)</option>`],['F',`<option value="F">Future value (F)</option>`],['A',`<option value="A">Repeating payment (A)</option>`],['G',`<option value="G">Initial gradient payment (G)</option>`],['D',`<option value="D">Initial exponentially increasing payment (D)</option>`],['X',`<option value="F">Future value (F)</option><option value="A">Repeating payment (A)</option><option value="G">Initial gradient payment (G)</option><option value="D">Initial exponentially increasing payment (D)</option>`]]
+    }
 }
 
 function vars(){
@@ -142,7 +152,8 @@ function vars(){
     var clear1 = document.getElementById('clear1');
 };
 
-let wi= new WriteInterest()
+let wi= new WriteInterest();
+let wc= new WriteCompoundedInterest();
 vars();
 
 
@@ -165,6 +176,15 @@ interestMode.addEventListener('change',()=>{
         rate2.value=``;
     }
 },interestData.innerHTML=wi.NTE, vars())
+
+initialCompoundedCalculation.addEventListener('change',()=>{
+    compoundedCalculation.innerHTML='';
+        for(var i=0;i<wc.compoundedCalculation.length-1;i++){
+            if(initialCompoundedCalculation.value!=wc.compoundedCalculation[i][0]){
+                compoundedCalculation.innerHTML+=wc.compoundedCalculation[i][1];
+            }
+        };
+},compoundedCalculation.innerHTML=wc.compoundedCalculation[5][1])
 
 
 
