@@ -70,6 +70,25 @@
                     </select>
                     <p>to</p>
                     <select id="compoundedCalculation"></select>
+                    <div id="compoundedData"></div>
+                    <p>Interest rate (i) (%):</p>
+                    <label for="interestComp">
+                        <input id="interestComp" type="number">
+                    </label>
+                    <p>Number of periods (n):</p>
+                    <label for="periodsComp">
+                        <input id="periodsComp" type="number">
+                    </label>
+                    <div id="whatIfD">
+                    </div>
+                    <div class="buttonContainer">
+                        <button type="button" onclick="calCompoundedInterest()">Calculate</button>
+                        <button type="button" onclick="clear3()">Clear</button>
+                    </div>
+                    <p id="compoundedOutput"></p>
+                    <label for="CompoundedSolution">
+                        <input id="CompoundedSolution" type="number">
+                    </label>
                 </div>
             </div>
         </div>

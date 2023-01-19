@@ -2,7 +2,9 @@ let interestMode = document.getElementById('interestMode');
 let interestData = document.getElementById('interestData');
 let compoundedCalculation = document.getElementById('compoundedCalculation');
 let initialCompoundedCalculation = document.getElementById('initialCompoundedCalculation');
-
+let compoundedData = document.getElementById('compoundedData');
+let compoundedOutput = document.getElementById('compoundedOutput');
+let whatIfD = document.getElementById('whatIfD');
 
 
 function Round(num){
@@ -137,7 +139,28 @@ class WriteInterest{
 class WriteCompoundedInterest{
     constructor(){
         this.compoundedCalculation=[['P',`<option value="P">Present value (P)</option>`],['F',`<option value="F">Future value (F)</option>`],['A',`<option value="A">Repeating payment (A)</option>`],['G',`<option value="G">Initial gradient payment (G)</option>`],['D',`<option value="D">Initial exponentially increasing payment (D)</option>`],['X',`<option value="F">Future value (F)</option><option value="A">Repeating payment (A)</option><option value="G">Initial gradient payment (G)</option><option value="D">Initial exponentially increasing payment (D)</option>`]]
-    }
+        this.compoundedInputValues=[`<p>Present value (P):</p>
+        <label for="pc">
+            <input id="pc" type="number">
+        </label>`,`<p>Future value (F):</p>
+        <label for="fc">
+            <input id="fc" type="number">
+        </label>`,`<p>Repeating payment (A):</p>
+        <label for="ac">
+            <input id="ac" type="number">
+        </label>`,`<p>Initial gradient payment (G):</p>
+        <label for="gc">
+            <input id="gc" type="number">
+        </label>`,`<p>Initial exponentially increasing payment (D):</p>
+        <label for="dc">
+            <input id="dc" type="number">
+        </label>
+        <p>Increasing percentage (g):</p>
+        <label for="ggc">
+            <input id="ggc" type="number">
+        </label>`]
+        this.compoundedOutputValues=[`Equivalent present value (P)`,`Equivalent future value (F)`,`Equivalent repeating payment (A)`,`Equivalent initial gradient payment (G)`,`Equivalent initial exponentially increasing payment (D)`]
+        }
 }
 
 function vars(){
@@ -178,13 +201,44 @@ interestMode.addEventListener('change',()=>{
 },interestData.innerHTML=wi.NTE, vars())
 
 initialCompoundedCalculation.addEventListener('change',()=>{
+    whatIfD.innerHTML='';
+    if(initialCompoundedCalculation.value!='P'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[0];
+    }else{
+        compoundedOutput.innerText=wc.compoundedOutputValues[1];
+    }
     compoundedCalculation.innerHTML='';
         for(var i=0;i<wc.compoundedCalculation.length-1;i++){
             if(initialCompoundedCalculation.value!=wc.compoundedCalculation[i][0]){
-                compoundedCalculation.innerHTML+=wc.compoundedCalculation[i][1];
-            }
+                compoundedCalculation.innerHTML+=wc.compoundedCalculation[i][1];            
+            };
+            if(initialCompoundedCalculation.value==wc.compoundedCalculation[i][0]){
+                compoundedData.innerHTML=wc.compoundedInputValues[i];
+            };
         };
-},compoundedCalculation.innerHTML=wc.compoundedCalculation[5][1])
+},compoundedCalculation.innerHTML=wc.compoundedCalculation[5][1],compoundedData.innerHTML=wc.compoundedInputValues[0])
+
+compoundedCalculation.addEventListener('change',()=>{
+    if(compoundedCalculation.value=='P'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[0];
+        whatIfD.innerHTML='';
+    }else if(compoundedCalculation.value=='F'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[1];
+        whatIfD.innerHTML='';
+    }else if(compoundedCalculation.value=='A'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[2];
+        whatIfD.innerHTML='';
+    }else if(compoundedCalculation.value=='G'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[3];
+        whatIfD.innerHTML='';
+    }else if(compoundedCalculation.value=='D'){
+        compoundedOutput.innerText=wc.compoundedOutputValues[4];
+        whatIfD.innerHTML=`<p>Increasing percentage (g) for D:</p>
+        <label for="ggc">
+        <input id="ggc" type="number">
+    </label>`
+    }
+},compoundedOutput.innerText=wc.compoundedOutputValues[1])
 
 
 
