@@ -160,7 +160,66 @@ class WriteCompoundedInterest{
             <input id="ggc" type="number">
         </label>`]
         this.compoundedOutputValues=[`Equivalent present value (P)`,`Equivalent future value (F)`,`Equivalent repeating payment (A)`,`Equivalent initial gradient payment (G)`,`Equivalent initial exponentially increasing payment (D)`]
-        }
+        this.interestComp=0;
+        this.periodsComp=0;
+        this.presentValue=0;
+        this.futureValue=0;
+        this.repeatingPayment=0;
+        this.gradientPayment=0;
+        this.expIncreasingPayment=0;
+        this.increasingPercentage=0;
+        };
+        calFP(){
+            this.futureValue=this.presentValue*((1+this.interestComp)**(this.periodsComp));
+        };
+        calPF(){
+            this.presentValue=this.futureValue*((1+this.interestComp)**(-this.periodsComp));
+        };
+        calAF(){
+            this.repeatingPayment=this.futureValue*this.interestComp/(((1+this.interestComp)**(this.periodsComp))-1)
+        };
+        calAP(){
+            this.repeatingPayment=this.presentValue*(this.interestComp*((1+this.interestComp)**(this.periodsComp)))/(((1+this.interestComp)**(this.periodsComp))-1);
+        };
+        calFA(){
+            this.futureValue=this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp);
+        };
+        calPA(){
+            this.presentValue=this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp*((1+this.interestComp)**(this.periodsComp)));
+        };
+        calFG(){
+            this.futureValue=this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/(this.interestComp**2);
+        };
+        calPG(){
+            this.presentValue=this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/((this.interestComp**2)*((1+this.interestComp)**(this.periodsComp)));
+        };
+        calAG(){
+            this.repeatingPayment=this.gradientPayment*((1/this.interestComp)-(this.periodsComp/(((1+this.interestComp)**(this.periodsComp))-1)));
+        };
+        calFD1(){
+            this.futureValue=this.expIncreasingPayment*(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp)))/(this.increasingPercentage-this.interestComp);
+        };
+        calFD2(){
+            this.futureValue=this.expIncreasingPayment*(this.periodsComp*((1+this.interestComp)**(this.periodsComp)))/(1+this.increasingPercentage);
+        };
+        calPD1(){
+            this.presentValue=this.expIncreasingPayment*((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1)/(this.increasingPercentage-this.interestComp);
+        };
+        calPD2(){
+            this.presentValue=this.expIncreasingPayment*this.periodsComp/(1+this.increasingPercentage);
+        };
+        calDF1(){
+            this.expIncreasingPayment=this.futureValue*(this.increasingPercentage-this.interestComp)/(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp)));
+        };
+        calDF2(){
+            this.expIncreasingPayment=this.futureValue*(1+this.increasingPercentage)/(this.periodsComp*((1+this.interestComp)**(this.periodsComp)));
+        };
+        calDP1(){
+            this.expIncreasingPayment=this.presentValue*(this.increasingPercentage-this.interestComp)/((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1);
+        };
+        calPD2(){
+            this.expIncreasingPayment=this.presentValue*(1+this.increasingPercentage)/this.periodsComp;
+        };
 }
 
 function vars(){
@@ -175,9 +234,22 @@ function vars(){
     var clear1 = document.getElementById('clear1');
 };
 
+function vars2(){
+    var pc = document.getElementById('pc');
+    var fc = document.getElementById('fc');
+    var ac = document.getElementById('ac');
+    var gc = document.getElementById('gc');
+    var dc = document.getElementById('dc');
+    var ggc = document.getElementById('ggc');
+    var interestComp = document.getElementById('interestComp');
+    var periodsComp = document.getElementById('periodsComp');
+    var compoundedSolution =  document.getElementById('CompoundedSolution');
+}
+
 let wi= new WriteInterest();
 let wc= new WriteCompoundedInterest();
 vars();
+vars2();
 
 
 interestMode.addEventListener('change',()=>{
@@ -216,7 +288,9 @@ initialCompoundedCalculation.addEventListener('change',()=>{
                 compoundedData.innerHTML=wc.compoundedInputValues[i];
             };
         };
-},compoundedCalculation.innerHTML=wc.compoundedCalculation[5][1],compoundedData.innerHTML=wc.compoundedInputValues[0])
+        vars2();
+},compoundedCalculation.innerHTML=wc.compoundedCalculation[5][1],compoundedData.innerHTML=wc.compoundedInputValues[0],vars2());
+
 
 compoundedCalculation.addEventListener('change',()=>{
     if(compoundedCalculation.value=='P'){
@@ -238,7 +312,8 @@ compoundedCalculation.addEventListener('change',()=>{
         <input id="ggc" type="number">
     </label>`
     }
-},compoundedOutput.innerText=wc.compoundedOutputValues[1])
+    vars2();
+},compoundedOutput.innerText=wc.compoundedOutputValues[1],vars2());
 
 
 
