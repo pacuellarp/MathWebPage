@@ -5,7 +5,7 @@ let initialCompoundedCalculation = document.getElementById('initialCompoundedCal
 let compoundedData = document.getElementById('compoundedData');
 let compoundedOutput = document.getElementById('compoundedOutput');
 let whatIfD = document.getElementById('whatIfD');
-
+let compoundedSolution = document.getElementById('compoundedSolution');
 
 function Round(num){
     return Math.round((num)*1000000)/1000000;
@@ -170,55 +170,64 @@ class WriteCompoundedInterest{
         this.increasingPercentage=0;
         };
         calFP(){
-            this.futureValue=this.presentValue*((1+this.interestComp)**(this.periodsComp));
+            this.futureValue=Round(this.presentValue*((1+this.interestComp)**(this.periodsComp)));
         };
         calPF(){
-            this.presentValue=this.futureValue*((1+this.interestComp)**(-this.periodsComp));
+            this.presentValue=Round(this.futureValue*((1+this.interestComp)**(-this.periodsComp)));
         };
         calAF(){
-            this.repeatingPayment=this.futureValue*this.interestComp/(((1+this.interestComp)**(this.periodsComp))-1)
+            this.repeatingPayment=Round(this.futureValue*this.interestComp/(((1+this.interestComp)**(this.periodsComp))-1))
         };
         calAP(){
-            this.repeatingPayment=this.presentValue*(this.interestComp*((1+this.interestComp)**(this.periodsComp)))/(((1+this.interestComp)**(this.periodsComp))-1);
+            this.repeatingPayment=Round(this.presentValue*(this.interestComp*((1+this.interestComp)**(this.periodsComp)))/(((1+this.interestComp)**(this.periodsComp))-1));
         };
         calFA(){
-            this.futureValue=this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp);
+            this.futureValue=Round(this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp));
         };
         calPA(){
-            this.presentValue=this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp*((1+this.interestComp)**(this.periodsComp)));
+            this.presentValue=Round(this.repeatingPayment*(((1+this.interestComp)**(this.periodsComp))-1)/(this.interestComp*((1+this.interestComp)**(this.periodsComp))));
         };
         calFG(){
-            this.futureValue=this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/(this.interestComp**2);
+            this.futureValue=Round(this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/(this.interestComp**2));
+        };
+        calGF(){
+            this.gradientPayment=Round(this.futureValue/(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/(this.interestComp**2));
         };
         calPG(){
-            this.presentValue=this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/((this.interestComp**2)*((1+this.interestComp)**(this.periodsComp)));
+            this.presentValue=Round(this.gradientPayment*(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/((this.interestComp**2)*((1+this.interestComp)**(this.periodsComp))));
+        };
+        calGP(){
+            this.gradientPayment=Round(this.presentValue/(((1+this.interestComp)**(this.periodsComp))-(this.interestComp*this.periodsComp)-1)/((this.interestComp**2)*((1+this.interestComp)**(this.periodsComp))));
         };
         calAG(){
-            this.repeatingPayment=this.gradientPayment*((1/this.interestComp)-(this.periodsComp/(((1+this.interestComp)**(this.periodsComp))-1)));
+            this.repeatingPayment=Round(this.gradientPayment*((1/this.interestComp)-(this.periodsComp/(((1+this.interestComp)**(this.periodsComp))-1))));
+        };
+        calGA(){
+            this.gradientPayment=Round(this.repeatingPayment/((1/this.interestComp)-(this.periodsComp/(((1+this.interestComp)**(this.periodsComp))-1))));
         };
         calFD1(){
-            this.futureValue=this.expIncreasingPayment*(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp)))/(this.increasingPercentage-this.interestComp);
+            this.futureValue=Round(this.expIncreasingPayment*(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp)))/(this.increasingPercentage-this.interestComp));
         };
         calFD2(){
-            this.futureValue=this.expIncreasingPayment*(this.periodsComp*((1+this.interestComp)**(this.periodsComp)))/(1+this.increasingPercentage);
+            this.futureValue=Round(this.expIncreasingPayment*(this.periodsComp*((1+this.interestComp)**(this.periodsComp)))/(1+this.increasingPercentage));
         };
         calPD1(){
-            this.presentValue=this.expIncreasingPayment*((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1)/(this.increasingPercentage-this.interestComp);
+            this.presentValue=Round(this.expIncreasingPayment*((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1)/(this.increasingPercentage-this.interestComp));
         };
         calPD2(){
-            this.presentValue=this.expIncreasingPayment*this.periodsComp/(1+this.increasingPercentage);
+            this.presentValue=Round(this.expIncreasingPayment*this.periodsComp/(1+this.increasingPercentage));
         };
         calDF1(){
-            this.expIncreasingPayment=this.futureValue*(this.increasingPercentage-this.interestComp)/(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp)));
+            this.expIncreasingPayment=Round(this.futureValue*(this.increasingPercentage-this.interestComp)/(((1+this.increasingPercentage)**(this.periodsComp))-((1+this.interestComp)**(this.periodsComp))));
         };
         calDF2(){
-            this.expIncreasingPayment=this.futureValue*(1+this.increasingPercentage)/(this.periodsComp*((1+this.interestComp)**(this.periodsComp)));
+            this.expIncreasingPayment=Round(this.futureValue*(1+this.increasingPercentage)/(this.periodsComp*((1+this.interestComp)**(this.periodsComp))));
         };
         calDP1(){
-            this.expIncreasingPayment=this.presentValue*(this.increasingPercentage-this.interestComp)/((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1);
+            this.expIncreasingPayment=Round(this.presentValue*(this.increasingPercentage-this.interestComp)/((((1+this.increasingPercentage)/(1+this.interestComp))**(this.periodsComp))-1));
         };
-        calPD2(){
-            this.expIncreasingPayment=this.presentValue*(1+this.increasingPercentage)/this.periodsComp;
+        calDP2(){
+            this.expIncreasingPayment=Round(this.presentValue*(1+this.increasingPercentage)/this.periodsComp);
         };
 }
 
@@ -243,7 +252,7 @@ function vars2(){
     var ggc = document.getElementById('ggc');
     var interestComp = document.getElementById('interestComp');
     var periodsComp = document.getElementById('periodsComp');
-    var compoundedSolution =  document.getElementById('CompoundedSolution');
+    var compoundedSolution =  document.getElementById('compoundedSolution');
 }
 
 let wi= new WriteInterest();
@@ -307,7 +316,7 @@ compoundedCalculation.addEventListener('change',()=>{
         whatIfD.innerHTML='';
     }else if(compoundedCalculation.value=='D'){
         compoundedOutput.innerText=wc.compoundedOutputValues[4];
-        whatIfD.innerHTML=`<p>Increasing percentage (g) for D:</p>
+        whatIfD.innerHTML=`<p>Increasing percentage (g) (%) for D:</p>
         <label for="ggc">
         <input id="ggc" type="number">
     </label>`
@@ -342,6 +351,32 @@ function calInterest(){
         wi.nRate2CompTime=nRate2CompTime.value*1;
         wi.calNTN();
         rate2.value=`${wi.rate2.annual*100}%`
+    }
+};
+
+function calCompoundedInterest(){
+    wc.interestComp=(interestComp.value*1)/100;
+    wc.periodsComp=periodsComp.value*1;
+    if(initialCompoundedCalculation.value=='P'){
+        wc.presentValue=pc.value*1;
+        if(compoundedCalculation.value=='F'){
+            wc.calFP();
+            compoundedSolution.value=wc.futureValue;
+        }else if(compoundedCalculation.value=='A'){
+            wc.calAP();
+            compoundedSolution.value=wc.repeatingPayment;
+        }else if(compoundedCalculation.value=='G'){
+            wc.calGP()
+            compoundedSolution.value=wc.gradientPayment;
+        }else if(compoundedCalculation.value=='D'){
+            wc.increasingPercentage=(ggc.value*1)/100;
+            if(wc.increasingPercentage!=wc.interestComp){
+                wc.calDP1();
+            }else{
+                wc.calDP2();
+            };
+            compoundedSolution.value=wc.expIncreasingPayment;
+        };
     }
 };
 
