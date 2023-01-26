@@ -377,6 +377,91 @@ function calCompoundedInterest(){
             };
             compoundedSolution.value=wc.expIncreasingPayment;
         };
+    }else if(initialCompoundedCalculation.value=='F'){
+        wc.futureValue=fc.value*1;
+        if(compoundedCalculation.value=='P'){
+            wc.calPF();
+            compoundedSolution.value=wc.presentValue;
+        }else if(compoundedCalculation.value=='A'){
+            wc.calAF();
+            compoundedSolution.value=wc.repeatingPayment;
+        }else if(compoundedCalculation.value=='G'){
+            wc.calGF()
+            compoundedSolution.value=wc.gradientPayment;
+        }else if(compoundedCalculation.value=='D'){
+            wc.increasingPercentage=(ggc.value*1)/100;
+            if(wc.increasingPercentage!=wc.interestComp){
+                wc.calDF1();
+            }else{
+                wc.calDF2();
+            };
+            compoundedSolution.value=wc.expIncreasingPayment;
+        };
+    }else if(initialCompoundedCalculation.value=='A'){
+        wc.repeatingPayment=ac.value*1;
+        if(compoundedCalculation.value=='P'){
+            wc.calPA();
+            compoundedSolution.value=wc.presentValue;
+        }else if(compoundedCalculation.value=='F'){
+            wc.calFA();
+            compoundedSolution.value=wc.futureValue;
+        }else if(compoundedCalculation.value=='G'){
+            wc.calGA()
+            compoundedSolution.value=wc.gradientPayment;
+        }else if(compoundedCalculation.value=='D'){
+            wc.increasingPercentage=(ggc.value*1)/100;
+            if(wc.increasingPercentage!=wc.interestComp){
+                wc.calFA();
+                wc.calDF1();
+            }else{
+                wc.calFA();
+                wc.calDF2();
+            };
+            compoundedSolution.value=wc.expIncreasingPayment;
+        };
+    }else if(initialCompoundedCalculation.value=='G'){
+        wc.gradientPayment=gc.value*1;
+        if(compoundedCalculation.value=='P'){
+            wc.calPG();
+            compoundedSolution.value=wc.presentValue;
+        }else if(compoundedCalculation.value=='F'){
+            wc.calFG();
+            compoundedSolution.value=wc.futureValue;
+        }else if(compoundedCalculation.value=='A'){
+            wc.calAG()
+            compoundedSolution.value=wc.repeatingPayment;
+        }else if(compoundedCalculation.value=='D'){
+            wc.increasingPercentage=(ggc.value*1)/100;
+            if(wc.increasingPercentage!=wc.interestComp){
+                wc.calFG();
+                wc.calDF1();
+            }else{
+                wc.calFG();
+                wc.calDF2();
+            };
+            compoundedSolution.value=wc.expIncreasingPayment;
+        };
+    }else if(initialCompoundedCalculation.value=='D'){
+        wc.expIncreasingPayment=dc.value*1;
+        wc.increasingPercentage=(ggc.value*1)/100;
+            if(wc.increasingPercentage!=wc.interestComp){
+                wc.calPD1();
+                wc.calFD1();
+            }else{
+                wc.calPD2();
+                wc.calFD2();
+            };
+        if(compoundedCalculation.value=='P'){
+            compoundedSolution.value=wc.presentValue;
+        }else if(compoundedCalculation.value=='F'){
+            compoundedSolution.value=wc.futureValue;
+        }else if(compoundedCalculation.value=='A'){
+            wc.calAP();
+            compoundedSolution.value=wc.repeatingPayment;
+        }else if(compoundedCalculation.value=='G'){
+            wc.calGF();
+            compoundedSolution.value=wc.gradientPayment;
+        };
     }
 };
 
@@ -400,6 +485,27 @@ function clear1(){
         rate2Time.value = '1';
         rate2.value = '';
     };   
+};
+
+function clear3(){
+    interestComp.value='';
+    periodsComp.value='';
+    compoundedSolution.value='';
+    if(initialCompoundedCalculation.value=='P'){
+        pc.value='';
+    }else if(initialCompoundedCalculation.value=='F'){
+        fc.value='';
+    }else if(initialCompoundedCalculation.value=='A'){
+        ac.value='';
+    }else if(initialCompoundedCalculation.value=='G'){
+        gc.value='';
+    }else if(initialCompoundedCalculation.value=='D'){
+        dc.value='';
+        ggc.value='';
+    };
+    if(compoundedCalculation.value=='D'){
+        ggc.value='';
+    };
 };
 
 rate2Time.addEventListener('change',()=>{
