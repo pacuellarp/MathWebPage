@@ -373,7 +373,7 @@ h3{
 /*PlaneGeometric*/
 
 .triangle{
-    background-image: url('/src/figures/triangle.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/triangle.png');
     width: 300px;
     height: 100px;
     background-size: cover;
@@ -382,7 +382,7 @@ h3{
 }
 
 .circle{
-    background-image: url('/src/figures/circle.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/circle.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -391,7 +391,7 @@ h3{
 }
 
 .square{
-    background-image: url('/src/figures/square.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/square.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -400,7 +400,7 @@ h3{
 }
 
 .rectangle{
-    background-image: url('/src/figures/rectangle.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/rectangle.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -409,7 +409,7 @@ h3{
 }
 
 .circularSector{
-    background-image: url('/src/figures/circularSector.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/circularSector.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -418,7 +418,7 @@ h3{
 }
 
 .rhombus{
-    background-image: url('/src/figures/rhombus.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/rhombus.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -428,7 +428,7 @@ h3{
 
 
 .polygon{
-    background-image: url('/src/figures/polygon.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/polygon.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -437,7 +437,7 @@ h3{
 }
 
 .rhomboid{
-    background-image: url('/src/figures/rhomboid.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/rhomboid.png');
     width: 300px;
     height: 150px;
     background-size: cover;
@@ -446,7 +446,7 @@ h3{
 }
 
 .trapezium{
-    background-image: url('/src/figures/trapezium.png');
+    background-image: url('https://pacuellarp.github.io/MathWebPage/src/figures/trapezium.png');
     width: 300px;
     height: 150px;
     background-size: cover;
