@@ -243,17 +243,36 @@ class WriteSimpleInterest{
         </label>`],['A',`<p>Total amount after the given time period (A):</p>
         <label for="as">
             <input id="as" type="number">
-        </label>`],['R',`<p>Rate of interest (R) (%):</p>
+        </label>`],['r',`<p>Interest rate (r) (%):</p>
         <label for="rs">
             <input id="rs" type="number">
-        </label>`],['T',`<p>Time (T):</p>
+        </label>`],['t',`<p>Time (t):</p>
         <label for="ts">
             <input id="ts" type="number">
         </label>`]];
-        this.simpleOutputValues=[`Resulting principal amount (P):`,`Resulting total amount (A):`,`Resulting rate of interest (R) (%):`,`Resulting time (T):`,`Resulting simple interest (SI):`];
-        
-    }
-}
+        this.simpleOutputValues=[`Resulting principal amount (P):`,`Resulting total amount (A):`,`Resulting interest rate (r) (%):`,`Resulting time (t):`,`Resulting simple interest (SI):`];
+        this.principal=0;
+        this.totalAmount=0;
+        this.interestRate=0;
+        this.time=0;
+        this.simpleInterest=0;
+    };
+    calP(){
+        this.principal=Round(this.totalAmount/(1+this.interestRate*this.time));
+    };
+    calA(){
+        this.totalAmount=Round(this.principal*(1+this.interestRate*this.time));
+    };
+    calR(){
+        this.interestRate=Round(((this.totalAmount/this.principal)-1)/this.time);
+    };
+    calT(){
+        this.time=Round(((this.totalAmount/this.principal)-1)/this.interestRate);
+    };
+    calSI(){
+        this.simpleInterest=Round(this.principal*this.interestRate*this.time);
+    };
+};
 
 function vars(){
     var nRate = document.getElementById('nRate');
@@ -359,6 +378,7 @@ compoundedCalculation.addEventListener('change',()=>{
 
 initialSimpleCalculation.addEventListener('change',()=>{
     simpleData.innerHTML='';
+    simpleSolution.value='';
     for (var i=0;i<ws.simpleInputValues.length;i++){
         if(initialSimpleCalculation.value!=ws.simpleInputValues[i][0] && initialSimpleCalculation.value!='SI'){
             simpleData.innerHTML+=ws.simpleInputValues[i][1];
@@ -371,11 +391,12 @@ initialSimpleCalculation.addEventListener('change',()=>{
         simpleOutput.innerText=ws.simpleOutputValues[4];
         for (var i=0;i<ws.simpleInputValues.length;i++){
             if(i!=1){
-                simpleData.innerHTML+=ws.simpleInputValues[i][1]
+                simpleData.innerHTML+=ws.simpleInputValues[i][1];
             };
         }; 
     };
-},simpleData.innerHTML=ws.simpleInputValues[1][1]+ws.simpleInputValues[2][1]+ws.simpleInputValues[3][1],simpleOutput.innerText=ws.simpleOutputValues[0])
+    vars3();
+},simpleData.innerHTML=ws.simpleInputValues[1][1]+ws.simpleInputValues[2][1]+ws.simpleInputValues[3][1],simpleOutput.innerText=ws.simpleOutputValues[0],vars3())
 
 function calInterest(){
     if(interestMode.value=='NomToEff'){
@@ -513,7 +534,38 @@ function calCompoundedInterest(){
             wc.calGF();
             compoundedSolution.value=wc.gradientPayment;
         };
-    }
+    };
+};
+
+function calSimpleInterest(){
+    if(initialSimpleCalculation.value!='P'){
+        ws.principal=ps.value*1;
+    };
+    if(initialSimpleCalculation.value!='r'){
+        ws.interestRate=(rs.value*1)/100;
+    };
+    if(initialSimpleCalculation.value!='t'){
+        ws.time=ts.value*1;
+    };
+    if(initialSimpleCalculation.value!='A' && initialSimpleCalculation.value!='SI'){
+        ws.totalAmount=as.value*1;
+    };
+    if(initialSimpleCalculation.value=='P'){
+        ws.calP();
+        simpleSolution.value=ws.principal;
+    }else if(initialSimpleCalculation.value=='A'){
+        ws.calA();
+        simpleSolution.value=ws.totalAmount;
+    }else if(initialSimpleCalculation.value=='r'){
+        ws.calR();
+        simpleSolution.value=`${ws.interestRate*100}%`;
+    }else if(initialSimpleCalculation.value=='t'){
+        ws.calT();
+        simpleSolution.value=ws.time;
+    }else if(initialSimpleCalculation.value=='SI'){
+        ws.calSI();
+        simpleSolution.value=ws.simpleInterest;
+    };
 };
 
 function clear1(){
@@ -537,6 +589,22 @@ function clear1(){
         rate2.value = '';
     };   
 };
+
+function clear2(){
+    simpleSolution.value=''
+    if(initialSimpleCalculation.value!='P'){
+        ps.value='';
+    };
+    if(initialSimpleCalculation.value!='r'){
+        rs.value='';
+    };
+    if(initialSimpleCalculation.value!='t'){
+        ts.value='';
+    };
+    if(initialSimpleCalculation.value!='A' && initialSimpleCalculation.value!='SI'){
+        as.value='';
+    };
+}
 
 function clear3(){
     interestComp.value='';

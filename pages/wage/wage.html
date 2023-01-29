@@ -26,7 +26,7 @@
     </header>
     <main>
         <h1>Time Value of Money Calculator</h1>
-        <h3>Please enter your data, it's not necessary that they be sorted. <br> Below are the most common measures of central location and dispersion ready to be calculated.</h3>
+        <h3>Make sure to input each interest rate in its percentage value, without the % symbol. <br> You must input the time or number of periods on the same scale as the interest used.</h3>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
                 <h4>Interest Rate Conversor</h4>
@@ -63,8 +63,8 @@
                 <select id="initialSimpleCalculation">
                     <option value="P"> Principal amount or the initial loan amount (P)</option>
                     <option value="A">Total amount after the given time period (A)</option>
-                    <option value="R">Rate of interest (R)</option>
-                    <option value="T">Time (T)</option>
+                    <option value="r">Interest rate (R)</option>
+                    <option value="t">Time (T)</option>
                     <option value="SI">Simple interest (SI)</option>
                 </select>
                 <div id="simpleData"></div>
@@ -74,7 +74,7 @@
                 </div>
                 <p id="simpleOutput"></p>
                 <label for="simpleSolution">
-                    <input id="simpleSolution" type="number">
+                    <input id="simpleSolution" type="text">
                 </label>
             </div>
             <div class="mainOneContainer">

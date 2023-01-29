@@ -5,6 +5,7 @@ let spaces = document.getElementById('spaces');
 let inputData = document.getElementById('inputDataStatistical');
 let outputData = document.getElementById('outputDataStatistical');
 let table = document.getElementById('outliersTable');
+let minMaxTable = document.getElementById('minMaxTable');
 let data = '';
 
 let idArrays=["arithmeticMean","median","mode","firstQuartile","thirdQuartile","midRange","standardDeviation","variance","interquartileRange","range","coefVariation","quartileCoefDispersion","geometricMean","harmonicMean","rootMeanSquare","interquartileMean"]
@@ -311,14 +312,14 @@ class LocAndDis{
         draw.stroke();
         draw.font="10px Arial";
         draw.fillStyle="black";
-        draw.fillText(`${li}`,0,150)
-        draw.fillText(`${lsF}`,326,150)
         draw.fillText(`${this.firstQuartile}`,this.firstQuartile*prop,150)
         draw.fillText(`${this.thirdQuartile}`,this.thirdQuartile*prop,150)
         draw.fillText(`${this.median}`,this.median*prop,150)
         draw.closePath();
     }
     makeTable(){
+        let li=this.firstQuartile-1.5*this.interquartileRange;
+        let ls=this.thirdQuartile+1.5*this.interquartileRange;
         let le=this.firstQuartile-3*this.interquartileRange;
         let lo=this.firstQuartile-1.5*this.interquartileRange;
         let uo=this.thirdQuartile+1.5*this.interquartileRange;
@@ -339,6 +340,16 @@ class LocAndDis{
         <th>Upper outliers</th>
         <th>Upper extremes</th>
         </tr>`
+
+        minMaxTable.innerHTML=`<tr>
+        <th>Minimum score</th>
+        <th>Maximum score</th>
+        </tr>`;
+        
+        minMaxTable.innerHTML+=`<tr>
+        <td>${li}</td>
+        <td>${ls}</td>
+        </tr>`;
     
         for (var i=0;i<max;i++){
             if(typeof(led[i])=='number'){
