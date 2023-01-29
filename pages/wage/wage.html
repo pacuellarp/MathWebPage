@@ -58,7 +58,27 @@
         </div>
         <div class="mainThreeContainer">
             <div class="mainOneContainer">
-                <h4>Time Value of Money (Compounded Interest)</h4>
+                <h4>Time Value of Money - Simple Interest</h4>
+                <p>What do you want to calculate?:</p>
+                <select id="initialSimpleCalculation">
+                    <option value="P"> Principal amount or the initial loan amount (P)</option>
+                    <option value="A">Total amount after the given time period (A)</option>
+                    <option value="R">Rate of interest (R)</option>
+                    <option value="T">Time (T)</option>
+                    <option value="SI">Simple interest (SI)</option>
+                </select>
+                <div id="simpleData"></div>
+                <div class="buttonContainer">
+                    <button type="button" onclick="calSimpleInterest()">Calculate</button>
+                    <button type="button" onclick="clear2()">Clear</button>
+                </div>
+                <p id="simpleOutput"></p>
+                <label for="simpleSolution">
+                    <input id="simpleSolution" type="number">
+                </label>
+            </div>
+            <div class="mainOneContainer">
+                <h4>Time Value of Money - Compounded Interest</h4>
                 <p>Select a standard calculation:</p>
                 <div>
                     <select id="initialCompoundedCalculation">

@@ -6,6 +6,10 @@ let compoundedData = document.getElementById('compoundedData');
 let compoundedOutput = document.getElementById('compoundedOutput');
 let whatIfD = document.getElementById('whatIfD');
 let compoundedSolution = document.getElementById('compoundedSolution');
+let initialSimpleCalculation = document.getElementById('initialSimpleCalculation');
+let simpleData = document.getElementById('simpleData');
+let simpleOutput = document.getElementById('simpleOutput');
+let simpleSolution = document.getElementById('simpleSolution');
 
 function Round(num){
     return Math.round((num)*1000000)/1000000;
@@ -36,7 +40,7 @@ class WriteInterest{
             <button type="button" onclick="calInterest()">Calculate</button>
             <button type="button" onclick="clear1()">Clear</button>
         </div>
-            <p>Resulting Effective Interest Rate:</p>`;
+            <p>Resulting Effective Interest Rate (%):</p>`;
         this.ETN=`<p>Effective Interest Rate (%):</p>
         <div>
             <label for="eRate">
@@ -159,7 +163,7 @@ class WriteCompoundedInterest{
         <label for="ggc">
             <input id="ggc" type="number">
         </label>`]
-        this.compoundedOutputValues=[`Equivalent present value (P)`,`Equivalent future value (F)`,`Equivalent repeating payment (A)`,`Equivalent initial gradient payment (G)`,`Equivalent initial exponentially increasing payment (D)`]
+        this.compoundedOutputValues=[`Equivalent present value (P):`,`Equivalent future value (F):`,`Equivalent repeating payment (A):`,`Equivalent initial gradient payment (G):`,`Equivalent initial exponentially increasing payment (D):`]
         this.interestComp=0;
         this.periodsComp=0;
         this.presentValue=0;
@@ -229,6 +233,26 @@ class WriteCompoundedInterest{
         calDP2(){
             this.expIncreasingPayment=Round(this.presentValue*(1+this.increasingPercentage)/this.periodsComp);
         };
+};
+
+class WriteSimpleInterest{
+    constructor(){
+        this.simpleInputValues=[['P',`<p>Principal amount or the initial loan amount (P):</p>
+        <label for=ps">
+            <input id="ps" type="number">
+        </label>`],['A',`<p>Total amount after the given time period (A):</p>
+        <label for="as">
+            <input id="as" type="number">
+        </label>`],['R',`<p>Rate of interest (R) (%):</p>
+        <label for="rs">
+            <input id="rs" type="number">
+        </label>`],['T',`<p>Time (T):</p>
+        <label for="ts">
+            <input id="ts" type="number">
+        </label>`]];
+        this.simpleOutputValues=[`Resulting principal amount (P):`,`Resulting total amount (A):`,`Resulting rate of interest (R) (%):`,`Resulting time (T):`,`Resulting simple interest (SI):`];
+        
+    }
 }
 
 function vars(){
@@ -255,10 +279,19 @@ function vars2(){
     var compoundedSolution =  document.getElementById('compoundedSolution');
 }
 
+function vars3(){
+    var ps=document.getElementById('ps');
+    var as=document.getElementById('as');
+    var rs=document.getElementById('rs');
+    var ts=document.getElementById('ts');
+}
+
 let wi= new WriteInterest();
 let wc= new WriteCompoundedInterest();
+let ws= new WriteSimpleInterest();
 vars();
 vars2();
+vars3();
 
 
 interestMode.addEventListener('change',()=>{
@@ -324,7 +357,25 @@ compoundedCalculation.addEventListener('change',()=>{
     vars2();
 },compoundedOutput.innerText=wc.compoundedOutputValues[1],vars2());
 
-
+initialSimpleCalculation.addEventListener('change',()=>{
+    simpleData.innerHTML='';
+    for (var i=0;i<ws.simpleInputValues.length;i++){
+        if(initialSimpleCalculation.value!=ws.simpleInputValues[i][0] && initialSimpleCalculation.value!='SI'){
+            simpleData.innerHTML+=ws.simpleInputValues[i][1];
+        };
+        if(initialSimpleCalculation.value==ws.simpleInputValues[i][0]){
+            simpleOutput.innerText=ws.simpleOutputValues[i];
+        }
+    };
+    if(initialSimpleCalculation.value=='SI'){
+        simpleOutput.innerText=ws.simpleOutputValues[4];
+        for (var i=0;i<ws.simpleInputValues.length;i++){
+            if(i!=1){
+                simpleData.innerHTML+=ws.simpleInputValues[i][1]
+            };
+        }; 
+    };
+},simpleData.innerHTML=ws.simpleInputValues[1][1]+ws.simpleInputValues[2][1]+ws.simpleInputValues[3][1],simpleOutput.innerText=ws.simpleOutputValues[0])
 
 function calInterest(){
     if(interestMode.value=='NomToEff'){
