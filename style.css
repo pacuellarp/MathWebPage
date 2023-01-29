@@ -467,8 +467,8 @@ table{
 }
 
 table td, table th {
-border: 1px solid #ddd;
-padding: 8px;
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 table tr:nth-child(even){background-color: #f2f2f2;}
@@ -476,10 +476,14 @@ table tr:nth-child(even){background-color: #f2f2f2;}
 table tr:hover {background-color: #ddd;}
 
 table th {
-padding-top: 8px;
-padding-bottom: 8px;
-background-color: #385bf7;
-color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #385bf7;
+    color: white;
+}
+
+#specialContainer{
+    border-color:#ffffff;
 }
 
 @media only screen and (min-width: 997px){
