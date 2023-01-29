@@ -1,2 +1,2 @@
 # MathWebPage
-Webpage with basic math exercises, it's an excuse for practice JS.
+Webpage with basic math exercises. Completely made with pure HTML, CSS, and JS.
